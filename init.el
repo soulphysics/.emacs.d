@@ -1,5 +1,8 @@
 ;; ////////// BWR Custom Emacs Settings \\\\\\\\\\\ ;;
 
+;;; Set location for external packages.
+(add-to-list 'load-path "~/.emacs.d")
+
 ;; ======== Melpa Package Installer ======== ;;
  (when (>= emacs-major-version 24)
    (require 'package)
@@ -64,6 +67,13 @@
 (yas-global-mode 1)
 ;; key bindings
 (global-set-key "\M-s\M-s" 'yas-insert-snippet) 
+
+;; ==== Markdown ==== ;;
+(autoload 'markdown-mode "markdown-mode"
+   "Major mode for editing Markdown files" t)
+(add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+(add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 
 ;; ===== .app Graphical Display Only Preferences ===== ;;
 ;; Things that don't work/matter in the Terminal ;;
