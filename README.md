@@ -52,8 +52,8 @@ We want to install a better package manager. The basic pre-installed package man
 
 Now you need to install Auctex. This is the golden package for everything latex: an amazing reference manager, cool dropdown menus and completions, the works. Use the Emacs package mannager to install it. Within your sparkling new Emacs installation:
 
-	`M-x package-list`
-	Search/scroll down to Auctex and hit enter, then click install.
+- `M-x package-list`
+- Search/scroll down to Auctex and hit enter, then click install.
 
 The basic compile command is `C-c C-c`. In general `C-c` will start you off with an Auctex command.
 

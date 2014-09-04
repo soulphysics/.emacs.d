@@ -26,13 +26,7 @@
       (cursor-color . "#DAD085"))
      (default ((t (nil))))
      (modeline ((t (:background "white" :foreground "black" :box (:line-width 1 :style released-button)))))
-     (font-latex-italic-face ((t (:foreground "#ffffc2" :italic t)))) ; italics
-     (font-latex-bold-face ((t (:foreground "#ffc2b2" :bold t)))) ; bold
-     (font-latex-math-face ((t (:foreground "#00B800")))) ; latex math is green
-     (font-latex-string-face ((t (:foreground "#C6B6C8")))) ; quotes - plum
-     (font-latex-warning-face ((t (:foreground "#cc0000")))) ; dark scarlet red
-     (font-latex-slide-title-face ((t (:foreground "#c4a000")))) ; dark butter
-     (font-lock-builtin-face ((t (:foreground "ffc6ff"))))
+     (font-lock-builtin-face ((t (:foreground "#FFEBD6"))))
      (font-lock-comment-face ((t (:italic t :foreground "#75715D"))))
      (font-lock-constant-face ((t (:foreground "#ff00ff"))))
      (font-lock-doc-string-face ((t (:foreground "#ffff99"))))
@@ -46,6 +40,15 @@
      (hl-line ((t (:background "#1A1A1A"))))
      (region ((t (:background "#6DC5F1"))))
      (ido-subdir ((t (:foreground "#F1266F"))))
+     ; latex-specific
+     (font-latex-italic-face ((t (:foreground "#ffffc2" :italic t)))) ; italics
+     (font-latex-bold-face ((t (:foreground "#ffc2b2" :bold t)))) ; bold
+     (font-latex-math-face ((t (:foreground "#00B800")))) ; latex math is green
+     (font-latex-string-face ((t (:foreground "#FFAD5C")))) ; quotes - plum
+     (font-latex-warning-face ((t (:foreground "#cc0000")))) ; dark scarlet red
+     (font-latex-slide-title-face ((t (:foreground "#c4a000")))) ; dark butter
+     ; markdown specific
+     (markdown-list-face ((t (:foreground "#5454B5")))) ; deep blue
     )
   )
 )

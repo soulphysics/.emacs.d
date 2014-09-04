@@ -29,10 +29,14 @@
 (color-theme-initialize) ;theme
 (load-file "~/.emacs.d/themes/montekai.el") ;theme
 (montekai) ;theme
-
 ;; scroll up/down a line with meta n/p ;;
 (global-set-key [up] (lambda () (interactive) (scroll-down 1)))
 (global-set-key [down] (lambda () (interactive) (scroll-up 1)))
+;; open recent files with C-x C-r
+(require 'recentf)
+(recentf-mode 1)
+(setq recentf-max-menu-items 15)
+(global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
 ;; == AucTeX == ;;
 (setq TeX-auto-save t)
@@ -74,6 +78,7 @@
 (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
+(add-hook 'markdown-mode-hook 'visual-line-mode) ; line wrapping
 
 ;; ===== .app Graphical Display Only Preferences ===== ;;
 ;; Things that don't work/matter in the Terminal ;;
