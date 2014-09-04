@@ -1,14 +1,14 @@
 Emacs Zen
 ========
 
-How to set up a simple, minimalist emacs installation, for editing LaTeX on Mac OS X.
+My simple minimalist emacs installation on Mac OS X, focused on editing LaTeX.
 
 **Screenshot:**
 ![Emacs Zen Screenshot](http://personal.lse.ac.uk/robert49/misc/emacs-shot.png "Emacs Zen Screenshot")
 
 ## Requirements
 
-Nothing special is required for emacs, but I will write from the perspective of someone using Mac OS X.
+Nothing special is required for emacs. But I'm writing this from the perspective of someone using Mac OS X, I will assume some familiarity with the [command line](http://lifehacker.com/5633909/who-needs-a-mouse-learn-to-use-the-command-line-for-almost-anything) and with [basic emacs](http://www.jesshamrick.com/2012/09/10/absolute-beginners-guide-to-emacs/) operations.
 
 ## Basic Installation
 
