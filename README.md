@@ -32,19 +32,19 @@ You'll want to have Emacs sitting in your Applications folder with your other ap
 
 	brew linkapps
 
-The latter is accomplished by creating a shell alias. You can do this by editing your .bash_profile following these steps:
+You'll then see Emacs.app appear in your /Applications folder. The latter is accomplished by creating a shell alias. You can do this by editing your bash profile following these steps:
 
 - Open Terminal.app	
-- Open your bash profile by typing: emacs ~/.bash_profile
-- Add this line to the end: alias Emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"
-- Active you new settings by saving and quitting emacs (C-x C-s C-x C-c) and running this command in the terminal: source .bash_profile
-- Now you'll be able to access your new Emacs installation by just running Emacs with a capital E.
+- Open your bash profile by typing: `emacs ~/.bash_profile`
+- Add this line to the end: `alias Emacs="/Applications/Emacs.app/Contents/MacOS/Emacs -nw"`
+- Active you new settings by saving and quitting emacs (`C-x C-s` `C-x C-c`) and running this command in the terminal: `source .bash_profile`
+- Now you'll be able to access your new Emacs installation by just running `Emacs` with a capital E in the command line.
 
-There are lots more great suggestions for .bash profile customizations written up by  [Nate Landau](http://natelandau.com/my-mac-osx-bash_profile/).
+There are lots more great suggestions for bash profile customizations written up by  [Nate Landau](http://natelandau.com/my-mac-osx-bash_profile/).
 
 ### Use a better package manager
 
-We want to install a better package manager. The basic pre-installed package manager is called elpa. You can access it within emacs by going to M-x package-list --- but let's install the superior "melpa" manager first. The necessary code for this is included in the init.el file.
+We want to install a better package manager. The basic pre-installed package manager is called elpa. You can access it within emacs by going to `M-x` package-list --- but let's install the superior "melpa" manager first. The necessary code for this is included in the init.el file.
 
 ## All Things LaTeX
 
@@ -52,10 +52,10 @@ We want to install a better package manager. The basic pre-installed package man
 
 Now you need to install Auctex. This is the golden package for everything latex: an amazing reference manager, cool dropdown menus and completions, the works. Use the Emacs package mannager to install it. Within your sparkling new Emacs installation:
 
-	M-x package-list
+	`M-x package-list`
 	Search/scroll down to Auctex and hit enter, then click install.
 
-The basic compile command is C-c C-c. In general C-c will start you off with an Auctex command.
+The basic compile command is `C-c C-c`. In general `C-c` will start you off with an Auctex command.
 
 ### Sync Skim
 
@@ -63,7 +63,7 @@ Now that Auctex is installed, you can get Latex to sync properly with a PDF read
 
 - [Download Skim](http://skim-app.sourceforge.net/)
 
-There are two steps to setting up syncing: forward syncing (hit C-c C-v in LaTeX and go to the line in the PDF where your cursor is) and backward syncing (command-shift-click on a paragraph in the PDF to go to the LaTeX line.)
+There are two steps to setting up syncing: forward syncing (hit `C-c C-v` in LaTeX and go to the line in the PDF where your cursor is) and backward syncing (command-shift-click on a paragraph in the PDF to go to the LaTeX line.)
 
 As a preparation step, create a file called .latexmkrc and paste the following into it.
 
@@ -75,7 +75,7 @@ Then set up forward and backward syncing using the following.
 
 1. **Forward Syncing.** This is enabled in the init.el file, in the portion labeled "Skim PDF Syncing"
 
-2. **Backward Syncing.** Open Emacs and go to Preferences > Sync. Choose Emacs, then change it to Custom and replace emacsclient with the location of your emacsclient file. In my case, it's in: /usr/local/Cellar/emacs/24.3/bin/emacsclient
+2. **Backward Syncing.** Open Emacs and go to Preferences > Sync. Choose Emacs, then change it to Custom and replace `emacsclient` with the location of your emacsclient file. In my case, it is: `/usr/local/Cellar/emacs/24.3/bin/emacsclient`
 
 ### Yasnippet
 
@@ -83,10 +83,10 @@ Use Melpa to install Yasnippet, an awesome tab-completion and snippet tool. Then
 
 ## Further Notes on Reftex
 
-Make sure you read up on Reftex and play around with it. It's amazing. As a test, open a document with an equation that is labeled with something like \label{eq:myequation}. Try typing the word Equation, then a space, and then hitting C-c C-) which calls Reftex's label-completion. A dropdown menu will appear with your file's section structure, and all the labeled equations highlighted for you to scroll through.
+Make sure you read up on Reftex and play around with it. It's amazing. As a test, open a document with an equation that is labeled with something like \label{eq:myequation}. Try typing the word Equation, then a space, and then hitting `C-c C-)` which calls Reftex's label-completion. A dropdown menu will appear with your file's section structure, and all the labeled equations highlighted for you to scroll through.
 
 Other nice Reftex tricks include:
 
-- C-c [ (dropdown with citations pulled automatically from a linked bib file)
-- C-c ] (auto-end closest existing open environment)
-- C-c ( (insert label)
+- `C-c [` - dropdown with citations pulled automatically from a linked bib file
+- `C-c ]` - auto-end closest existing open environment
+- `C-c (` - insert label
