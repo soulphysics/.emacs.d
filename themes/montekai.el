@@ -49,6 +49,8 @@
      (font-latex-slide-title-face ((t (:foreground "#c4a000")))) ; dark butter
      ; markdown specific
      (markdown-list-face ((t (:foreground "#5454B5")))) ; deep blue
+     ; html-mode specific
+     (web-mode-html-tag-face ((t (:foreground "#FF0066")))) ; pink
     )
   )
 )
