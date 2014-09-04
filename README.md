@@ -8,22 +8,17 @@ How to set up a simple, minimalist emacs installation, for editing LaTeX on Mac 
 
 ## Requirements
 
-Drop the following files in your home directory.
-
-- .emacs
-- .latexmkrc
-
-Drop the following file into the directory ~/.emacs.d/themes (create this directory if it doesn't exist yet).
-
-- montekai.el
-
-Then follow the instructions below.
+Nothing special is required for emacs, but I will write from the perspective of someone using Mac OS X.
 
 ## Basic Installation
 
+### This folder
+
+Make sure this folder is in your home directory ~/.emacs.d --- it's a hidden file, so if you don't have all hidden files revealed, you can access it through the Terminal by list using `ls -a` or just `cd` into it.
+
 ### Download and Install
 
-The first step is to install a better version of emacs. There are various distributions available. [Aquamacs](http://aquamacs.org/) is among the easiest and comes with Auctex installed out of the box. [Emacs for Mac](http://emacsformacosx.com/) is a bit more "no frills." Homebrew is the most hacker-friendly, and I'll assume here that you've installed that:
+The first step is to install a better version of emacs. There are various distributions available, e.g. [Aquamacs](http://aquamacs.org/) or [Emacs for Mac](http://emacsformacosx.com/). But Homebrew is the most hacker-friendly, and I'll assume here that you've installed that:
 
 - [Homebrew](http://brew.sh/) -- Installation instructions are available on [wikemacs](http://wikemacs.org/wiki/Installing_Emacs_on_OS_X).
 
@@ -49,7 +44,7 @@ There are lots more great suggestions for .bash profile customizations written u
 
 ### Use a better package manager
 
-We want to install a better package manager. The basic pre-installed package manager is called elpa. You can access it within emacs by going to M-x package-list --- but let's install the superior "melpa" manager first. The necessary code for this is included in the .emacs file.
+We want to install a better package manager. The basic pre-installed package manager is called elpa. You can access it within emacs by going to M-x package-list --- but let's install the superior "melpa" manager first. The necessary code for this is included in the init.el file.
 
 ## All Things LaTeX
 
@@ -78,13 +73,13 @@ As a preparation step, create a file called .latexmkrc and paste the following i
 
 Then set up forward and backward syncing using the following.
 
-1. **Forward Syncing.** Add the portion of my .emacs file labeled "Skim PDF Syncing"
+1. **Forward Syncing.** This is enabled in the init.el file, in the portion labeled "Skim PDF Syncing"
 
 2. **Backward Syncing.** Open Emacs and go to Preferences > Sync. Choose Emacs, then change it to Custom and replace emacsclient with the location of your emacsclient file. In my case, it's in: /usr/local/Cellar/emacs/24.3/bin/emacsclient
 
 ### Yasnippet
 
-Use Melpa to install Yasnippet, an awesome tab-completion and snippet tool. Then activate it using the Yasnippet code in my .emacs file. Once installed, Yasnippet will appear in the menu and let you create your own snippets.
+Use Melpa to install Yasnippet, an awesome tab-completion and snippet tool. Then activate it using the Yasnippet code in the init.el file. Once installed, Yasnippet will appear in the menu and let you create your own snippets.
 
 ## Further Notes on Reftex
 
