@@ -24,8 +24,8 @@
 ;; custom theme (use melpa to install color-theme package)
 (require 'color-theme) ;theme
 (color-theme-initialize) ;theme
-(load-file "~/.emacs.d/bwr-themes/almost-monokai.el") ;theme
-(almost-monokai) ;theme
+(load-file "~/.emacs.d/themes/montekai.el") ;theme
+(montekai) ;theme
 
 ;; scroll up/down a line with meta n/p ;;
 (global-set-key [up] (lambda () (interactive) (scroll-down 1)))

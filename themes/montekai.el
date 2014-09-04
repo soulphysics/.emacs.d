@@ -1,10 +1,9 @@
-;;; Almost Monokai: almost-monokai.el
-;;; A beautiful, fruity and calm emacs color theme, modified by BWR
+;;; Montekai: montekai.el
+;;; A fruity latex-friendly emacs theme inspired by Monokai
 
-;; Author: Prateek Saxena <prtksxna@gmail.com>
-;; Author: Pratul Kalia   <pratul@pratul.in>
+;; Author: Bryan W. Roberts <http://personal.lse.ac.uk/robert49>
 ;;
-;; Based on the Monokai TextMate theme
+;; Inspired by the Monokai TextMate theme
 ;; Author: Wimer Hazenberg <http://www.monokai.nl>
 
 ;; Depends: color-theme
@@ -18,18 +17,18 @@
 (require 'color-theme)
 
 ; Code start.
-(defun almost-monokai ()
+(defun montekai ()
   (interactive)
   (color-theme-install
-   '(almost-monokai
+   '(montekai
      ((background-color . "#272821")
       (foreground-color . "#F8F8F2")
       (cursor-color . "#DAD085"))
      (default ((t (nil))))
      (modeline ((t (:background "white" :foreground "black" :box (:line-width 1 :style released-button)))))
-     (font-latex-italic-face ((t (:foreground "#efefef" :italic t))))
-     (font-latex-bold-face ((t (:foreground "#efefef" :bold t)))) ; bold
-     (font-latex-math-face ((t (:foreground "#00B800"))))
+     (font-latex-italic-face ((t (:foreground "#ffffc2" :italic t)))) ; italics
+     (font-latex-bold-face ((t (:foreground "#ffc2b2" :bold t)))) ; bold
+     (font-latex-math-face ((t (:foreground "#00B800")))) ; latex math is green
      (font-latex-string-face ((t (:foreground "#C6B6C8")))) ; quotes - plum
      (font-latex-warning-face ((t (:foreground "#cc0000")))) ; dark scarlet red
      (font-latex-slide-title-face ((t (:foreground "#c4a000")))) ; dark butter
@@ -50,6 +49,6 @@
     )
   )
 )
-(provide 'almost-monokai)
+(provide 'montekai)
 ;---------------
 ; Code end.
