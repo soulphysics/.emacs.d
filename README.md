@@ -16,7 +16,9 @@ Nothing special is required for emacs. But I'm writing this from the perspective
 
 Make sure this folder is in your home directory ~/.emacs.d --- it's a hidden file, so if you don't have all hidden files revealed, you can access it through the Terminal by list using `ls -a` or just `cd` into it.
 
-### Download and Install
+Even easier: create a Github account and fork this respository. Then use Github's desktop software to clone your .emacs.d folder to your home directory. You'll be able to repeat this process on all your machines, using Github to keep your Emacs preferences synced and shared on the web.
+
+### Download and Install Emacs
 
 The first step is to install a better version of emacs. There are various distributions available, e.g. [Aquamacs](http://aquamacs.org/) or [Emacs for Mac](http://emacsformacosx.com/). But Homebrew is the most hacker-friendly, and I'll assume here that you've installed that:
 
@@ -81,7 +83,7 @@ Then set up forward and backward syncing using the following.
 
 Use Melpa to install Yasnippet, an awesome tab-completion and snippet tool. Then activate it using the Yasnippet code in the init.el file. Once installed, Yasnippet will appear in the menu and let you create your own snippets.
 
-## Further Notes on Reftex
+### Further Notes on Reftex
 
 Make sure you read up on Reftex and play around with it. It's amazing. As a test, open a document with an equation that is labeled with something like \label{eq:myequation}. Try typing the word Equation, then a space, and then hitting `C-c C-)` which calls Reftex's label-completion. A dropdown menu will appear with your file's section structure, and all the labeled equations highlighted for you to scroll through.
 
@@ -90,3 +92,7 @@ Other nice Reftex tricks include:
 - `C-c [` - dropdown with citations pulled automatically from a linked bib file
 - `C-c ]` - auto-end closest existing open environment
 - `C-c (` - insert label
+
+## Forking and Github
+
+Once you've achieved Emacs Zen, why not share the love? Create your own [github](https://github.com) repository for your .emacs.d folder, or create a fork for [my github repository](https://github.com/soulphysics/.emacs.d), and use Github's desktop application to keep your emacs folder synced across machines and forever shared on the web.
