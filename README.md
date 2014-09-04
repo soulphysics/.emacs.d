@@ -65,7 +65,7 @@ Now that Auctex is installed, you can get Latex to sync properly with a PDF read
 
 There are two steps to setting up syncing: forward syncing (hit `C-c C-v` in LaTeX and go to the line in the PDF where your cursor is) and backward syncing (command-shift-click on a paragraph in the PDF to go to the LaTeX line.)
 
-As a preparation step, create a file called .latexmkrc and paste the following into it.
+As a preparation step, create a file called ~/.latexmkrc in your home directory and paste the following into it.
 
 	$pdflatex = 'pdflatex -interaction=nonstopmode -synctex=1 %O %S';
 	$pdf_previewer = 'open -a skim';
