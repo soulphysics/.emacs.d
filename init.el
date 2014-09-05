@@ -43,12 +43,31 @@
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
 (add-hook 'LaTeX-mode-hook 'visual-line-mode) ; Word wrapping
-(add-hook 'LaTeX-mode-hook 'turn-on-flyspell)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
 (setq TeX-PDF-mode t) ; Compile as a PDF
 (setq reftex-ref-macro-prompt nil) ; Disable annoying reference prompt screen
+
+;; == FlySpell == ;;
+;; easy spell check settings
+;; From http://www.emacswiki.org/emacs/FlySpell
+;; For some reason I have to set the path to ispell by hand:
+(setq-default ispell-program-name "/usr/local/Cellar/ispell/3.3.02/bin/ispell")
+(add-hook 'LaTeX-mode-hook 'turn-on-flyspell) ;turn on for latex-mode
+(add-hook 'text-mode-hook 'turn-on-flyspell) ; turn on for text-mode
+(add-hook 'web-mode-hook 'turn-on-flyspell) ; turn on for web-mode
+(global-set-key (kbd "<f8>") 'ispell-word) ; f8 to check current word
+(global-set-key (kbd "C-S-<f8>") 'flyspell-mode) ; Ctrl-Shift-f8 to toggle
+(global-set-key (kbd "C-M-<f8>") 'flyspell-buffer)
+(global-set-key (kbd "C-<f8>") 'flyspell-check-previous-highlighted-word)
+(defun flyspell-check-next-highlighted-word ()
+  "Custom function to spell check next highlighted word"
+  (interactive)
+  (flyspell-goto-next-error)
+  (ispell-word)
+  )
+(global-set-key (kbd "M-<f8>") 'flyspell-check-next-highlighted-word)
 
 ;; === LatexMK - automatically recompile and run bibtex ===;;
 (add-hook 'LaTeX-mode-hook (lambda ()
