@@ -93,6 +93,8 @@
 (global-set-key "\M-s\M-s" 'yas-insert-snippet) 
 
 ;; ==== Markdown ==== ;;
+;; Requires installing markdown. Just run in the shell:
+;; brew install markdown
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . markdown-mode))
