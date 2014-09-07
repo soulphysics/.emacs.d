@@ -41,6 +41,7 @@
 ;; == AucTeX == ;;
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
+(setq preview-auto-cache-preamble t) ; stop preview pestering
 (setq-default TeX-master nil)
 (add-hook 'LaTeX-mode-hook 'visual-line-mode) ; Word wrapping
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
@@ -133,8 +134,12 @@
        (setenv "PATH"
           (concat
 	    "/usr/texbin" ":"
+	    "/usr/local/bin" ":"
 	    (getenv "PATH")
 	  ))
+       (setq exec-path (append exec-path '("/usr/local/bin")))
      )
      ;; else (optional)
 )
+
+
