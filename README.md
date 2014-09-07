@@ -95,7 +95,9 @@ Other nice Reftex tricks include:
 
 ### Latex Preview Function
 
-Auctex has a cool preview function. Notice in the preview menu that you can hit C-c C-c C-p to toggle a preview of latex-stuff, including math mode. This function uses ghostscript to display a little preview of the rendered results right in the buffer. It can be a little buggy for very complex maths, but for simple stuff it's great.
+Auctex has a cool preview function. Notice in the preview menu that you can hit C-c C-c C-p to toggle a preview of latex-stuff, including math mode. This function uses ghostscript to display a little preview of the rendered results right in the buffer. It can be a little buggy for very complex maths environments, but for simple stuff it's great:
+
+![Auctex Preview Screenshot](http://personal.lse.ac.uk/robert49/misc/auctex-preview.gif "Auctex Preview Screenshot")
 
 Requirements:
 
