@@ -93,6 +93,44 @@ Other nice Reftex tricks include:
 - `C-c ]` - auto-end closest existing open environment
 - `C-c (` - insert label
 
+### Latex Preview Function
+
+Auctex has a cool preview function. Notice in the preview menu that you can hit C-c C-c C-p to toggle a preview of latex-stuff, including math mode. This function uses ghostscript to display a little preview of the rendered results right in the buffer. It can be a little buggy for very complex maths, but for simple stuff it's great.
+
+Requirements:
+
+1. **Ghostscript.** On OS X, it's now installed automatically starting with TexLive 2014. If you prefer to use TexLive 2013 or earlier, you can run `brew install ghostscript`
+
+2. **Get emacs to find ghostscript.** For some reason emacs wouldn't find ghostscript by itself on my installation, and would return baloney like `pdf2dsc: command not found` and `No such file or directory, gs`. This is corrected by adding the location of the ghostscript bin to the PATH and executive path, with the following code (already in .emacs.d/init.el):
+
+	(setenv "PATH"
+	   (concat
+	   "/usr/texbin" ":"
+	   "/usr/local/bin" ":"
+	   (getenv "PATH")
+	   )
+   )
+   (setq exec-path (append exec-path '("/usr/local/bin")))
+
+## Multimarkdown
+
+Emacs Zen is also great for multimarkdown. It's pretty easy.
+
+1. Install markdown from the terminal with `brew install markdown`
+2. Add the markdown installation hooks (already in .emacs.d/init.el)
+
+Especially nice features include `C-c C-c m` which will compile your markdown and open a web browser for you to look at it.
+
+## More Emacs Zen Pleasantries
+
+I've added a couple of little tricks to .emacs.d/init.el to make things pleasant on a Mac.
+
+- **Up/Down Scrolling.** Using the up and down arrows will scroll the screen. In Emacs.app you have a ton of mousey actions available, clicking, scrolling, etc. But I like the arrows for fine-scrolling control.
+
+- **Easy Italics/Bold.** I added hooks to LaTeX and markdown modes so that Cmd-i and Cmd-b will pop in italics and bold environments, respectively.
+
+The OS X "command" key already does a lot of stuff you're used to: Cmd-s to save, Cmd-c to copy, Cmd-v to paste, etc. You can add more Cmd key bindings by using the code (kbd "s-<key>") for your desired <key>. See some examples in .emacs.d/init.el to get a feel for this.
+
 ## Forking and Github
 
 Once you've achieved Emacs Zen, why not share the love? Create your own [github](https://github.com) repository for your .emacs.d folder, or create a fork for [my github repository](https://github.com/soulphysics/.emacs.d), and use Github's desktop application to keep your emacs folder synced across machines and forever shared on the web.

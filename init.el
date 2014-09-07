@@ -38,6 +38,20 @@
 (setq recentf-max-menu-items 15)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 
+;; == Easy italics/bold in Latex/Markdown == ;;
+(add-hook 'LaTeX-mode-hook
+   '(lambda ()
+        (define-key LaTeX-mode-map (kbd "s-i") (kbd "\C-c \C-f \C-e"))
+	(define-key LaTeX-mode-map (kbd "s-b") (kbd "\C-c \C-f \C-b"))
+    )
+)
+(add-hook 'markdown-mode-hook
+   '(lambda ()
+        (define-key markdown-mode-map (kbd "s-i") (kbd "\C-c \C-s e"))
+	(define-key markdown-mode-map (kbd "s-b") (kbd "\C-c \C-s s"))
+    )
+)
+
 ;; == AucTeX == ;;
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
