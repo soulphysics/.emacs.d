@@ -37,8 +37,12 @@
 (recentf-mode 1)
 (setq recentf-max-menu-items 15)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
+(require 'multiple-cursors) ;; Multiple cursors package!
+(global-set-key (kbd "\C-c m") 'mc/edit-lines) ;; multiple cursors cmd
 
-;; == Easy italics/bold in Latex/Markdown == ;;
+
+
+;; == Easy italics/bold/indent in Latex/Markdown == ;;
 (add-hook 'LaTeX-mode-hook
    '(lambda ()
         (define-key LaTeX-mode-map (kbd "s-i") (kbd "\C-c \C-f \C-e"))
@@ -49,6 +53,8 @@
    '(lambda ()
         (define-key markdown-mode-map (kbd "s-i") (kbd "\C-c \C-s e"))
 	(define-key markdown-mode-map (kbd "s-b") (kbd "\C-c \C-s s"))
+	(define-key markdown-mode-map (kbd "s-[") (kbd "\C-c <"))
+	(define-key markdown-mode-map (kbd "s-]") (kbd "\C-c >"))
     )
 )
 
