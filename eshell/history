@@ -1,0 +1,5 @@
+echo $PATH
+exit
+PATH
+echo $PATH
+exit
