@@ -37,8 +37,13 @@
 (recentf-mode 1)
 (setq recentf-max-menu-items 15)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
+<<<<<<< HEAD
 (require 'multiple-cursors) ;; Multiple cursors package!
 (global-set-key (kbd "\C-c m") 'mc/edit-lines) ;; multiple cursors cmd
+=======
+; Here's a key that command that lets you insert a "pound" £ on an American keyboard. For British keyboards, I recommend changing the keyboard input source to Australian. The only difference is that Shift-3 becomes # and Option-3 will be set to £ by the mapping below. That way you can use these same emacs preferences for both kinds of keyboards.
+(global-set-key (kbd "M-3") '(lambda () (interactive) (insert "£")))
+>>>>>>> FETCH_HEAD
 
 
 
