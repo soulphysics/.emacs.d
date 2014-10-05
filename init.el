@@ -111,6 +111,8 @@
 (yas-global-mode 1)
 ;; key bindings
 (global-set-key "\M-s\M-s" 'yas-insert-snippet) 
+(setq yas-snippet-dirs (append yas-snippet-dirs
+                               '("~/.emacs.d/elpa/yasnippet-0.8.0/snippets")))
 
 ;; ==== Markdown ==== ;;
 ;; Requires installing markdown. Just run in the shell:

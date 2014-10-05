@@ -123,6 +123,26 @@ Emacs Zen is also great for multimarkdown. It's pretty easy.
 
 Especially nice features include `C-c C-c m` which will compile your markdown and open a web browser for you to look at it.
 
+## Web-Mode: A better html Mode
+
+Editing html in emacs is also sublime. However, the default html-mode for emacs is pretty useless. To reach zen, you'll need a more serious html mode called `web-mode`, which is in the .emacs.d file; the hook to make it the default mode for html, css and js files is in `init.el`.
+
+Apart from a number of helpful completion and tab conveniences, web-mode is smart enough to color html syntax, while also coloring css syntax when found within <style></style> tags, and js syntax when found within <script></script> tags.
+
+![Web-Mode Syntax Coloring](http://web-mode.org/web-mode.png?v=4)
+
+Absolutely lovely.
+
+### Using Yasnippet with Web-Mode
+
+Yasnippet has a rich set of built-in tab completions in html/css for almost everything you can think of. A quirk is just that it does not have a web-mode folder by default, and so these commands don't normally get loaded. This is easy to fix: just go to the yasnippet `snippets` folder and create a new folder called `web-mode`. Then copy all the commands from `html-mode` and `css-mode` into it, and you're all set. For example:
+
+- p TAB = <p>[cursor here]</p>
+- em TAB = <em>[cursor here]</em>
+- img TAB = <img src="" class="" alt="" />
+
+and so on.
+
 ## More Emacs Zen Pleasantries
 
 I've added a couple of little tricks to .emacs.d/init.el to make things pleasant on a Mac.
