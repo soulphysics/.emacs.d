@@ -8,7 +8,7 @@ My simple minimalist emacs installation on Mac OS X, focused on editing LaTeX.
 
 ## Requirements
 
-Nothing special is required for emacs. But I'm writing this from the perspective of someone using Mac OS X, I will assume some familiarity with the [command line](http://lifehacker.com/5633909/who-needs-a-mouse-learn-to-use-the-command-line-for-almost-anything) and with [basic emacs](http://www.jesshamrick.com/2012/09/10/absolute-beginners-guide-to-emacs/) operations.
+Nothing special is required for emacs. But I'm writing this from the perspective of someone using Mac OS X, and I will assume some familiarity with the [command line](http://lifehacker.com/5633909/who-needs-a-mouse-learn-to-use-the-command-line-for-almost-anything) and with [basic emacs](http://www.jesshamrick.com/2012/09/10/absolute-beginners-guide-to-emacs/) operations.
 
 ## Basic Installation
 
@@ -123,9 +123,9 @@ Emacs Zen is also great for multimarkdown. It's pretty easy.
 
 Especially nice features include `C-c C-c m` which will compile your markdown and open a web browser for you to look at it.
 
-## Web-Mode: A better html Mode
+## Web-Mode: A better html mode
 
-Editing html in emacs is also sublime. However, the default html-mode for emacs is pretty useless. To reach zen, you'll need a more serious html mode called `web-mode`, which is in the .emacs.d file; the hook to make it the default mode for html, css and js files is in `init.el`.
+Editing html in emacs is also sublime. However, the default html-mode for emacs is pretty useless. To reach zen, you'll need a more serious html mode called `web-mode`, which is already all set up in this .emacs.d directory. The folder is in the .emacs.d file, and there's a hook to make it the default mode for html, css and js files is in `init.el`.
 
 Apart from a number of helpful completion and tab conveniences, web-mode is smart enough to color html syntax, while also coloring css syntax when found within <style></style> tags, and js syntax when found within <script></script> tags.
 
@@ -135,17 +135,17 @@ Absolutely lovely.
 
 ### Using Yasnippet with Web-Mode
 
-Yasnippet has a rich set of built-in tab completions in html/css for almost everything you can think of. A quirk is just that it does not have a web-mode folder by default, and so these commands don't normally get loaded. This is easy to fix: just go to the yasnippet `snippets` folder and create a new folder called `web-mode`. Then copy all the commands from `html-mode` and `css-mode` into it, and you're all set. For example:
+Yasnippet has a rich set of built-in tab completions in html/css for almost everything you can think of. A quirk is just that it does not have a web-mode folder by default, and so these commands don't normally get loaded. This is easy to fix, and I have done so for this emacs setup. All I had to do is go to the yasnippet `snippets` folder and create a new folder called `web-mode`. Then I copied all the commands from `html-mode` and `css-mode` into it that new folder. The effect is lovely. For example, here are some of the built-in snippets:
 
-- p TAB = <p>[cursor here]</p>
-- em TAB = <em>[cursor here]</em>
-- img TAB = <img src="" class="" alt="" />
+- `p TAB` = `<p>[cursor here]</p>`
+- `em TAB` = `<em>[cursor here]</em>`
+- `img TAB` = `<img src="[1st tab]" class="[2nd tab]" alt="[3rd tab]" />`
 
-and so on.
+Lots of the built-in snippets are really intuitive like that, but there are others, and of course you can create your own.
 
-## More Emacs Zen Pleasantries
+## More Emacs Zen Pleasantries on Mac OS X
 
-I've added a couple of little tricks to .emacs.d/init.el to make things pleasant on a Mac.
+I've added a couple of Mac OS X specific keystrokes to .emacs.d/init.el to make things pleasant on a Mac:
 
 - **Up/Down Scrolling.** Using the up and down arrows will scroll the screen. In Emacs.app you have a ton of mousey actions available, clicking, scrolling, etc. But I like the arrows for fine-scrolling control.
 
