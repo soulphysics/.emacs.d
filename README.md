@@ -137,9 +137,9 @@ Absolutely lovely.
 
 Yasnippet has a rich set of built-in tab completions in html/css for almost everything you can think of. A quirk is just that it does not have a web-mode folder by default, and so these commands don't normally get loaded. This is easy to fix, and I have done so for this emacs setup. All I had to do is go to the yasnippet `snippets` folder and create a new folder called `web-mode`. Then I copied all the commands from `html-mode` and `css-mode` into it that new folder. The effect is lovely. For example, here are some of the built-in snippets:
 
-- `p TAB` = `<p>[cursor here]</p>`
-- `em TAB` = `<em>[cursor here]</em>`
-- `img TAB` = `<img src="[1st tab]" class="[2nd tab]" alt="[3rd tab]" />`
+- `p TAB` &rarr; `<p>[cursor here]</p>`
+- `em TAB` &rarr; `<em>[cursor here]</em>`
+- `img TAB` &rarr; `<img src="[1st tab]" class="[2nd tab]" alt="[3rd tab]" />`
 
 Lots of the built-in snippets are really intuitive like that, but there are others, and of course you can create your own.
 
