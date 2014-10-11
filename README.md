@@ -50,52 +50,60 @@ We want to install a better package manager. The basic pre-installed package man
 
 ## All Things LaTeX
 
-### Install Auctex
+### Auctex
 
-Now you need to install Auctex. This is the golden package for everything latex: an amazing reference manager, cool dropdown menus and completions, the works. Use the Emacs package mannager to install it. Within your sparkling new Emacs installation:
+Auctex is the golden package for everything latex: an amazing reference manager, cool dropdown menus and completions, the works. It's all ready to go, but in general one uses the package manager to install such packages. Within your sparkling new Emacs installation:
 
 - `M-x package-list`
 - Search/scroll down to Auctex and hit enter, then click install.
 
-The basic compile command is `C-c C-c`. In general `C-c` will start you off with an Auctex command.
+Go ahead and check it out; emacs will tell you that it's already installed.
+
+The basic compile command is `C-c C-c`. In general `C-c` will start you off with an Auctex command. You can see more from the Auctex menu. (You *have* explored all the menus, haven't you?)
 
 ### Sync Skim
 
-Now that Auctex is installed, you can get Latex to sync properly with a PDF reader. The best one for this is Skim.
+With Auctex is installed, you can get Latex to sync properly with a PDF reader. You will have to set this up, since it involves putting a file in your home directory and installing a new application. But here's what you'll get:
+
+1. *Forward syncing:* You can hit `C-c C-v` in LaTeX with your cursor at some point in the tex document, and it will zip you to the corresponding line in the PDF.
+
+2. *Backward syncing:* As you're reading your PDF in Skim, you'll be able to Command-shift-click on a paragraph (e.g. when you see an error) and be zipped to the corresponding LaTeX line in emacs.
+
+To set this up, first download Skim. It's free, is a solid PDF reader, and it is in my view the best PDF reader for syncing emacs.
 
 - [Download Skim](http://skim-app.sourceforge.net/)
 
-There are two steps to setting up syncing: forward syncing (hit `C-c C-v` in LaTeX and go to the line in the PDF where your cursor is) and backward syncing (command-shift-click on a paragraph in the PDF to go to the LaTeX line.)
-
-As a preparation step, create a file called ~/.latexmkrc in your home directory and paste the following into it.
+The next step is to create a file called ~/.latexmkrc in your home directory and paste the following into it.
 
 	$pdflatex = 'pdflatex -interaction=nonstopmode -synctex=1 %O %S';
 	$pdf_previewer = 'open -a skim';
 	$clean_ext = 'bbl rel %R-blx.bib %R.synctex.gz';
 
-Then set up forward and backward syncing using the following.
+Finally, to set up backwards syncing, open Skim and go to Preferences > Sync. Choose Emacs, then change it to Custom and replace `emacsclient` with the location of your emacsclient file. In my case, it is: `/usr/local/Cellar/emacs/24.3/bin/emacsclient`
 
-1. **Forward Syncing.** This is enabled in the init.el file, in the portion labeled "Skim PDF Syncing"
-
-2. **Backward Syncing.** Open Emacs and go to Preferences > Sync. Choose Emacs, then change it to Custom and replace `emacsclient` with the location of your emacsclient file. In my case, it is: `/usr/local/Cellar/emacs/24.3/bin/emacsclient`
+That's it --- syncing zen will be yours.
 
 ### Yasnippet
 
-Use Melpa to install Yasnippet, an awesome tab-completion and snippet tool. Then activate it using the Yasnippet code in the init.el file. Once installed, Yasnippet will appear in the menu and let you create your own snippets.
+I've installed the fancier package manager Melpa, which lets you install still fancier things like Yasnippet, an awesome tab-completion and snippet tool. It's already activated in the init.el file. This provides a rich set of pre-installed snippets for LaTeX and many other languages.
 
-### Further Notes on Reftex
+### Reftex for automatic reference insertion
 
-Make sure you read up on Reftex and play around with it. It's amazing. As a test, open a document with an equation that is labeled with something like \label{eq:myequation}. Try typing the word Equation, then a space, and then hitting `C-c C-)` which calls Reftex's label-completion. A dropdown menu will appear with your file's section structure, and all the labeled equations highlighted for you to scroll through.
+The path to bibliographic enlightenment begins by keeping all your bibliography items in one master .bib file and including it in all your LaTeX documents. When it's time to submit the article to a journal, just compile the LaTeX file. The exact bibliographic items you need can be found in the .bbl file created when LaTeX compiles.
 
-Other nice Reftex tricks include:
+Now here's the really great part. With Auctex installed, you automatically get a tool called Reftex that will read and automatically insert items from that master bibliography. Here are a few of the more helpful commands:
 
 - `C-c [` - dropdown with citations pulled automatically from a linked bib file
 - `C-c ]` - auto-end closest existing open environment
 - `C-c (` - insert label
 
+Reftex is really powerful. As a test:
+
+Open a document with an equation that is labeled with something like \label{eq:myequation}. Try typing the word Equation, then a space, and then hitting `C-c C-)` which calls Reftex's label-completion. A dropdown menu will appear with your file's section structure, and all the labeled equations highlighted for you to scroll through. Wow!
+
 ### Latex Preview Function
 
-Auctex has a cool preview function. Notice in the preview menu that you can hit C-c C-c C-p to toggle a preview of latex-stuff, including math mode. This function uses ghostscript to display a little preview of the rendered results right in the buffer. It can be a little buggy for very complex maths environments, but for simple stuff it's great:
+Auctex has a cool preview function, illustrated below. Notice in the preview menu that you can hit C-c C-c C-p to toggle a preview of latex-stuff, including math mode. This function uses ghostscript to display a little preview of the rendered results right in the buffer. It can be a little buggy for very complex maths environments, but for simple stuff it's great:
 
 ![Auctex Preview Screenshot](http://personal.lse.ac.uk/robert49/misc/auctex-preview.gif "Auctex Preview Screenshot")
 
