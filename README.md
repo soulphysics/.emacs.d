@@ -1,7 +1,9 @@
 Emacs Zen
 ========
 
-My simple minimalist emacs installation on Mac OS X, focused on editing LaTeX.
+Emacs is the most powerful, most enlightened way to edit LaTeX, markdown and web markup like html, css and javascript. And it's 100% free.
+
+In what follows I describe my minimalist emacs installation on Mac OS X. To copy my setup exactly just follow the instructions below. Or pick and choose what you want. There are many roads to Emacs Zen.
 
 **Screenshot:**
 ![Emacs Zen Screenshot](http://personal.lse.ac.uk/robert49/misc/emacs-shot.png "Emacs Zen Screenshot")
