@@ -1,7 +1,7 @@
 ;; ////////// BWR Custom Emacs Settings \\\\\\\\\\\ ;;
 
 ;;; Set location for external packages.
-(add-to-list 'load-path "~/.emacs.d")
+(add-to-list 'load-path "~/.emacs.d/lisp")
 
 ;; ======== Melpa Package Installer ======== ;;
  (when (>= emacs-major-version 24)
@@ -27,13 +27,13 @@
 ;; custom theme (use melpa to install color-theme package)
 (require 'color-theme) ;theme
 (color-theme-initialize) ;theme
-(load-file "~/.emacs.d/themes/montekai.el") ;theme
+(load-file "~/.emacs.d/lisp/themes/montekai.el") ;theme
 (montekai) ;theme
-;; scroll up/down a line with meta n/p ;;
+;; scroll up/down a line with up and down arrows ;;
 (global-set-key [up] (lambda () (interactive) (scroll-down 1)))
 (global-set-key [down] (lambda () (interactive) (scroll-up 1)))
 ;; open recent files with C-x C-r
-(require 'recentf)
+(require 'recentf) ;; Obtain a list of recent files wiht C-x C-r
 (recentf-mode 1)
 (setq recentf-max-menu-items 15)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
@@ -41,6 +41,7 @@
 (global-set-key (kbd "\C-c m") 'mc/edit-lines) ;; multiple cursors cmd
 ; Here's a key that command that lets you insert a "pound" £ on an American keyboard. For British keyboards, I recommend changing the keyboard input source to Australian. The only difference is that Shift-3 becomes # and Option-3 will be set to £ by the mapping below. That way you can use these same emacs preferences for both kinds of keyboards.
 (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "£")))
+(require 'centered-window-mode) ;; Centred window mode package for centering text
 
 ;; == Easy italics/bold/indent in Latex/Markdown == ;;
 (add-hook 'LaTeX-mode-hook
@@ -53,8 +54,6 @@
    '(lambda ()
         (define-key markdown-mode-map (kbd "s-i") (kbd "\C-c \C-s e"))
 	(define-key markdown-mode-map (kbd "s-b") (kbd "\C-c \C-s s"))
-	(define-key markdown-mode-map (kbd "s-[") (kbd "\C-c <"))
-	(define-key markdown-mode-map (kbd "s-]") (kbd "\C-c >"))
     )
 )
 
