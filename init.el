@@ -17,8 +17,8 @@
 (setq linum-format "%d  ") ; linenumber format
 (setq-default cursor-type 'bar) ; make cursor a vertical bar
 (blink-cursor-mode 1) ; blink the cursor
-(add-to-list 'default-frame-alist '(height . 60)) ; window height
-(add-to-list 'default-frame-alist '(width . 80)) ; window width
+(custom-set-variables
+  '(initial-frame-alist (quote ((fullscreen . maximized))))) ; full screen
 (require 'paren) ; highlight open/closed parentheses
 (show-paren-mode 1) ; turn parentheses mode on, always
 (setq show-paren-delay 0) ; show the paren match immediately
