@@ -43,6 +43,12 @@
 (global-set-key (kbd "M-3") '(lambda () (interactive) (insert "£")))
 (require 'centered-window-mode) ;; Centred window mode package for centering text
 
+;; store all backup and autosave files in the tmp dir
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
 ;; == Easy italics/bold/indent in Latex/Markdown == ;;
 (add-hook 'LaTeX-mode-hook
    '(lambda ()
