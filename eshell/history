@@ -3,3 +3,12 @@ exit
 PATH
 echo $PATH
 exit
+pwd
+ls
+exit
+cd ~/.emacs.d
+ls
+cat README.md
+touch ~/Dropbox/Academics/WorkInProgress/KahlerQM/Bryan-Nic/bibliography.bib
+exit
+rsync ~/Dropbox/ElectronicLibrary/MasterBibliography.bib ~/Dropbox/Academics/WorkInProgress/KahlerQM/Bryan-Nic/bibliography.bib

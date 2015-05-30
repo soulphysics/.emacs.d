@@ -85,7 +85,7 @@
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq preview-auto-cache-preamble t) ; stop preview pestering
-(setq-default TeX-master nil)
+; (setq-default TeX-master nil)
 (add-hook 'LaTeX-mode-hook 'visual-line-mode) ; Word wrapping
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
@@ -116,10 +116,15 @@
 ;; === LatexMK - automatically recompile and run bibtex ===;;
 (add-hook 'LaTeX-mode-hook (lambda ()
   (push
-    '("latexmk" "latexmk -pdf -file-line-error %s" TeX-run-TeX nil t
+    '("latexmk" "latexmk -pdf %s" TeX-run-TeX nil t
       :help "Run latexmk on file")
     TeX-command-list)))
 (add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
+
+;; === Add Xelatex option === ;;
+(add-hook 'LaTeX-mode-hook (lambda()
+    (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
+))
 
 ;; === Skim PDF syncing === ;;
 ;option -b highlights the current line in Skim; option -g opens Skim in the background  
