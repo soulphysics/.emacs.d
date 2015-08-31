@@ -12,3 +12,8 @@ cat README.md
 touch ~/Dropbox/Academics/WorkInProgress/KahlerQM/Bryan-Nic/bibliography.bib
 exit
 rsync ~/Dropbox/ElectronicLibrary/MasterBibliography.bib ~/Dropbox/Academics/WorkInProgress/KahlerQM/Bryan-Nic/bibliography.bib
+cal 2015
+touch ~/Dropbox/Academics/Talks/2015-06-Sydney/Sydney-Slides-Outline.txt
+touch ~/Downloads/acts.html
+touch ~/Dropbox/Academics/BSPS/BSPS-2015-Meeting/BSPS-2015-Meeting-Notes.txt
+touch ~/Dropbox/Academics/LSE/ExamBoard/2015-2016-Meeting/2015-2016-ExamBoardNotes.txt
