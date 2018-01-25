@@ -1,0 +1,127 @@
+# .......................................................................
+
+# SVG 1.1 Document Model Module .........................................
+
+# file: svg11-model.mod
+# 
+# This is SVG, a language for describing two-dimensional graphics in XML.
+# Copyright 2001, 2002 W3C (MIT, INRIA, Keio), All Rights Reserved.
+# Revision: $Id: svg11-model.mod,v 1.3 2002/11/14 15:11:03 fujisawa Exp $
+# 
+# This DTD module is identified by the PUBLIC and SYSTEM identifiers:
+# 
+#    PUBLIC "-//W3C//ENTITIES SVG 1.1 Document Model//EN"
+#    SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-model.mod"
+# 
+# .......................................................................
+
+# SVG 1.1 Document Model
+# 
+# This module describes the groupings of elements that make up
+# common content models for SVG elements.
+
+# module: svg-structure.mod .........................
+
+SVG.Description.extra.class = notAllowed
+SVG.Description.class =
+  desc | title | metadata | SVG.Description.extra.class
+SVG.Use.extra.class = notAllowed
+SVG.Use.class = use | SVG.Use.extra.class
+SVG.Structure.extra.class = notAllowed
+SVG.Structure.class =
+  svg | g | defs | symbol | SVG.Use.class | SVG.Structure.extra.class
+# module: svg-conditional.mod .......................
+SVG.Conditional.extra.class = notAllowed
+SVG.Conditional.class = switch | SVG.Conditional.extra.class
+# module: svg-image.mod .............................
+SVG.Image.extra.class = notAllowed
+SVG.Image.class = image | SVG.Image.extra.class
+# module: svg-style.mod .............................
+SVG.Style.extra.class = notAllowed
+SVG.Style.class = style | SVG.Style.extra.class
+# module: svg-shape.mod .............................
+SVG.Shape.extra.class = notAllowed
+SVG.Shape.class =
+  path
+  | rect
+  | circle
+  | line
+  | ellipse
+  | polyline
+  | polygon
+  | SVG.Shape.extra.class
+# module: svg-text.mod ..............................
+SVG.Text.extra.class = notAllowed
+SVG.Text.class = \text | altGlyphDef | SVG.Text.extra.class
+SVG.TextContent.extra.class = notAllowed
+SVG.TextContent.class =
+  tspan | tref | textPath | altGlyph | SVG.TextContent.extra.class
+# module: svg-marker.mod ............................
+SVG.Marker.extra.class = notAllowed
+SVG.Marker.class = marker | SVG.Marker.extra.class
+# module: svg-profile.mod ...........................
+SVG.ColorProfile.extra.class = notAllowed
+SVG.ColorProfile.class = color-profile | SVG.ColorProfile.extra.class
+# module: svg-gradient.mod ..........................
+SVG.Gradient.extra.class = notAllowed
+SVG.Gradient.class =
+  linearGradient | radialGradient | SVG.Gradient.extra.class
+# module: svg-pattern.mod ...........................
+SVG.Pattern.extra.class = notAllowed
+SVG.Pattern.class = pattern | SVG.Pattern.extra.class
+# module: svg-clip.mod ..............................
+SVG.Clip.extra.class = notAllowed
+SVG.Clip.class = clipPath | SVG.Clip.extra.class
+# module: svg-mask.mod ..............................
+SVG.Mask.extra.class = notAllowed
+SVG.Mask.class = mask | SVG.Mask.extra.class
+# module: svg-filter.mod ............................
+SVG.Filter.extra.class = notAllowed
+SVG.Filter.class = filter | SVG.Filter.extra.class
+SVG.FilterPrimitive.extra.class = notAllowed
+SVG.FilterPrimitive.class =
+  feBlend
+  | feColorMatrix
+  | feComponentTransfer
+  | feComposite
+  | feConvolveMatrix
+  | feDiffuseLighting
+  | feDisplacementMap
+  | feFlood
+  | feGaussianBlur
+  | feImage
+  | feMerge
+  | feMorphology
+  | feOffset
+  | feSpecularLighting
+  | feTile
+  | feTurbulence
+  | SVG.FilterPrimitive.extra.class
+# module: svg-cursor.mod ............................
+SVG.Cursor.extra.class = notAllowed
+SVG.Cursor.class = cursor | SVG.Cursor.extra.class
+# module: svg-hyperlink.mod .........................
+SVG.Hyperlink.extra.class = notAllowed
+SVG.Hyperlink.class = a | SVG.Hyperlink.extra.class
+# module: svg-view.mod ..............................
+SVG.View.extra.class = notAllowed
+SVG.View.class = view | SVG.View.extra.class
+# module: svg-script.mod ............................
+SVG.Script.extra.class = notAllowed
+SVG.Script.class = script | SVG.Script.extra.class
+# module: svg-animation.mod .........................
+SVG.Animation.extra.class = notAllowed
+SVG.Animation.class =
+  animate
+  | set
+  | animateMotion
+  | animateColor
+  | animateTransform
+  | SVG.Animation.extra.class
+# module: svg-font.mod ..............................
+SVG.Font.extra.class = notAllowed
+SVG.Font.class = font | font-face | SVG.Font.extra.class
+# module: svg-extensibility.mod .....................
+SVG.Extensibility.extra.class = notAllowed
+SVG.Extensibility.class = foreignObject | SVG.Extensibility.extra.class
+# end of svg11-model.mod

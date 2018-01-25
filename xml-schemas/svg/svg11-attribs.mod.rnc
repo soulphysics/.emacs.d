@@ -1,0 +1,196 @@
+# .......................................................................
+
+# SVG 1.1 Attribute Collection Module ...................................
+
+# file: svg11-attribs.mod
+# 
+# This is SVG, a language for describing two-dimensional graphics in XML.
+# Copyright 2001, 2002 W3C (MIT, INRIA, Keio), All Rights Reserved.
+# Revision: $Id: svg11-attribs.mod,v 1.4 2002/11/14 15:11:03 fujisawa Exp $
+# 
+# This DTD module is identified by the PUBLIC and SYSTEM identifiers:
+# 
+#    PUBLIC "-//W3C//ENTITIES SVG 1.1 Attribute Collection//EN"
+#    SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11-attribs.mod"
+# 
+# .......................................................................
+
+# SVG 1.1 Attribute Collection
+# 
+# This module defines the set of common attributes that can be present
+# on many SVG elements.
+
+# module: svg-conditional.mod .......................
+
+ExtensionList.datatype = string
+FeatureList.datatype = string
+SVG.Conditional.extra.attrib = empty
+SVG.Conditional.attrib =
+  attribute requiredFeatures { FeatureList.datatype }?,
+  attribute requiredExtensions { ExtensionList.datatype }?,
+  attribute systemLanguage { LanguageCodes.datatype }?,
+  SVG.Conditional.extra.attrib
+# module: svg-style.mod .............................
+ClassList.datatype = string
+StyleSheet.datatype = string
+SVG.Style.extra.attrib = empty
+SVG.Style.attrib =
+  attribute style { StyleSheet.datatype }?,
+  attribute class { ClassList.datatype }?,
+  SVG.Style.extra.attrib
+# module: svg-text.mod ..............................
+BaselineShiftValue.datatype = string
+FontFamilyValue.datatype = string
+FontSizeValue.datatype = string
+FontSizeAdjustValue.datatype = string
+GlyphOrientationHorizontalValue.datatype = string
+GlyphOrientationVerticalValue.datatype = string
+KerningValue.datatype = string
+SpacingValue.datatype = string
+TextDecorationValue.datatype = string
+SVG.Text.extra.attrib = empty
+SVG.Text.attrib =
+  attribute writing-mode {
+    "lr-tb" | "rl-tb" | "tb-rl" | "lr" | "rl" | "tb" | "inherit"
+  }?,
+  SVG.Text.extra.attrib
+SVG.TextContent.extra.attrib = empty
+SVG.TextContent.attrib =
+  attribute alignment-baseline {
+    "auto"
+    | "baseline"
+    | "before-edge"
+    | "text-before-edge"
+    | "middle"
+    | "central"
+    | "after-edge"
+    | "text-after-edge"
+    | "ideographic"
+    | "alphabetic"
+    | "hanging"
+    | "mathematical"
+    | "inherit"
+  }?,
+  attribute baseline-shift { BaselineShiftValue.datatype }?,
+  attribute direction { "ltr" | "rtl" | "inherit" }?,
+  attribute dominant-baseline {
+    "auto"
+    | "use-script"
+    | "no-change"
+    | "reset-size"
+    | "ideographic"
+    | "alphabetic"
+    | "hanging"
+    | "mathematical"
+    | "central"
+    | "middle"
+    | "text-after-edge"
+    | "text-before-edge"
+    | "inherit"
+  }?,
+  attribute glyph-orientation-horizontal {
+    GlyphOrientationHorizontalValue.datatype
+  }?,
+  attribute glyph-orientation-vertical {
+    GlyphOrientationVerticalValue.datatype
+  }?,
+  attribute kerning { KerningValue.datatype }?,
+  attribute letter-spacing { SpacingValue.datatype }?,
+  attribute text-anchor { "start" | "middle" | "end" | "inherit" }?,
+  attribute text-decoration { TextDecorationValue.datatype }?,
+  attribute unicode-bidi {
+    "normal" | "embed" | "bidi-override" | "inherit"
+  }?,
+  attribute word-spacing { SpacingValue.datatype }?,
+  SVG.TextContent.extra.attrib
+SVG.Font.extra.attrib = empty
+SVG.Font.attrib =
+  attribute font-family { FontFamilyValue.datatype }?,
+  attribute font-size { FontSizeValue.datatype }?,
+  attribute font-size-adjust { FontSizeAdjustValue.datatype }?,
+  attribute font-stretch {
+    "normal"
+    | "wider"
+    | "narrower"
+    | "ultra-condensed"
+    | "extra-condensed"
+    | "condensed"
+    | "semi-condensed"
+    | "semi-expanded"
+    | "expanded"
+    | "extra-expanded"
+    | "ultra-expanded"
+    | "inherit"
+  }?,
+  attribute font-style { "normal" | "italic" | "oblique" | "inherit" }?,
+  attribute font-variant { "normal" | "small-caps" | "inherit" }?,
+  attribute font-weight {
+    "normal"
+    | "bold"
+    | "bolder"
+    | "lighter"
+    | "100"
+    | "200"
+    | "300"
+    | "400"
+    | "500"
+    | "600"
+    | "700"
+    | "800"
+    | "900"
+    | "inherit"
+  }?,
+  SVG.Font.extra.attrib
+# module: svg-marker.mod ............................
+MarkerValue.datatype = string
+SVG.Marker.extra.attrib = empty
+SVG.Marker.attrib =
+  attribute marker-start { MarkerValue.datatype }?,
+  attribute marker-mid { MarkerValue.datatype }?,
+  attribute marker-end { MarkerValue.datatype }?,
+  SVG.Marker.extra.attrib
+# module: svg-profile.mod ...........................
+SVG.ColorProfile.extra.attrib = empty
+SVG.ColorProfile.attrib =
+  attribute color-profile { text }?,
+  SVG.ColorProfile.extra.attrib
+# module: svg-gradient.mod ..........................
+NumberOrPercentage.datatype = string
+SVG.Gradient.extra.attrib = empty
+SVG.Gradient.attrib =
+  attribute stop-color { SVGColor.datatype }?,
+  attribute stop-opacity { OpacityValue.datatype }?,
+  SVG.Gradient.extra.attrib
+# module: svg-clip.mod ..............................
+ClipPathValue.datatype = string
+SVG.Clip.extra.attrib = empty
+SVG.Clip.attrib =
+  attribute clip-path { ClipPathValue.datatype }?,
+  attribute clip-rule { ClipFillRule.datatype }?,
+  SVG.Clip.extra.attrib
+# module: svg-mask.mod ..............................
+MaskValue.datatype = string
+SVG.Mask.extra.attrib = empty
+SVG.Mask.attrib =
+  attribute mask { MaskValue.datatype }?,
+  SVG.Mask.extra.attrib
+# module: svg-filter.mod ............................
+FilterValue.datatype = string
+NumberOptionalNumber.datatype = string
+SVG.Filter.extra.attrib = empty
+SVG.Filter.attrib =
+  attribute filter { FilterValue.datatype }?,
+  SVG.Filter.extra.attrib
+SVG.FilterColor.extra.attrib = empty
+SVG.FilterColor.attrib =
+  attribute color-interpolation-filters {
+    "auto" | "sRGB" | "linearRGB" | "inherit"
+  }?,
+  SVG.FilterColor.extra.attrib
+# module: svg-cursor.mod ............................
+CursorValue.datatype = string
+SVG.Cursor.extra.attrib = empty
+SVG.Cursor.attrib =
+  attribute cursor { CursorValue.datatype }?,
+  SVG.Cursor.extra.attrib
+# end of svg11-attribs.mod

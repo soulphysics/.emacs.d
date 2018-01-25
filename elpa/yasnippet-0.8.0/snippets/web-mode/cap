@@ -1,0 +1,5 @@
+# contributor: BWR
+# name: <p class="text-muted text-center small">$1</p>
+# key: cap
+# --
+<p class="text-muted text-center small">$1</p>

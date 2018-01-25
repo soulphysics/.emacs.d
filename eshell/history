@@ -1,19 +1,128 @@
-echo $PATH
+cat .authinfo
+cat .gnus
+brew install gnutls
+sudo brew install gnutls
+sudo xcodebuild -license
+agree
+brew install gnutls
+sudo xcodebuild -license
+agree
+sudo xcodebuild -license agree
+brew install gnutls
+man gnus
+ls -l
+ls -a
+cat bash_profile
+cat .bash_profile
+ls -a
+rm .gnus
+mv .gnus-old .gnus
+brew tap homebrew/science
+brew install r
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 exit
-PATH
-echo $PATH
-exit
-pwd
+cd .emacs.d
 ls
-exit
-cd ~/.emacs.d
+mkdir xml-schemas
+mv ~/Downloads/schemas.xml xml-schemas
+ls xml-schemas
+mv ~/Downloads/svg.zip xml-schemas
 ls
-cat README.md
-touch ~/Dropbox/Academics/WorkInProgress/KahlerQM/Bryan-Nic/bibliography.bib
-exit
-rsync ~/Dropbox/ElectronicLibrary/MasterBibliography.bib ~/Dropbox/Academics/WorkInProgress/KahlerQM/Bryan-Nic/bibliography.bib
-cal 2015
-touch ~/Dropbox/Academics/Talks/2015-06-Sydney/Sydney-Slides-Outline.txt
-touch ~/Downloads/acts.html
-touch ~/Dropbox/Academics/BSPS/BSPS-2015-Meeting/BSPS-2015-Meeting-Notes.txt
-touch ~/Dropbox/Academics/LSE/ExamBoard/2015-2016-Meeting/2015-2016-ExamBoardNotes.txt
+cd /bwrtex
+sudo ln -s ~/GoogleDrive/Academics/BryanCommands.tex BryanCommands.tex
+cd /bwrtex
+sudo ln -s ~/GoogleDrive/ElectronicLibrary/MasterBibliography.bib MasterBibliography.bib
+~/.emacs.d
+ls
+cd elpa
+ls
+rm -r ebib*
+cd /
+ls
+cd /bwrtex
+ln -s ~/GoogleDrive/ElectronicLibrary/MasterBibliography.bib MasterBibliography.bib
+sudo ln -s ~/GoogleDrive/ElectronicLibrary/MasterBibliography.bib MasterBibliography.bib
+cd /bwrtex
+ln -s ~/Dropbox/Academics/BryanCommands.tex ./BryanCommands.tex
+ln -s ~/Dropbox/Academics/BryanCommands.tex ./BryanCommands.tex
+sudo ln -s ~/Dropbox/Academics/BryanCommands.tex ./BryanCommands.tex
+cd /bwrtex
+sudo ln -s ~/Dropbox/ElectronicLibrary/MasterBibliography.bib ./MasterBibliography.bib
+/Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/java -version
+java -version
+java -version
+java -version
+cal 2016
+brew install pandoc
+sudo xcodebuild -license
+brew install pandoc
+cal 2017
+python nasdaq.py
+homebrew brew install pip
+brew install pip
+pip install pandas
+sudo easy_install pip
+pip install pandas
+python nasdaq.py
+cd ~/Dropbox/Projects/ArbitrageOpportunities/DataCollection/nasdaq.py
+~/Dropbox/Projects/ArbitrageOpportunities/DataCollection
+python nasdaq.py
+pip install pandas
+sudo pip install pandas
+pip install pandas-datareader
+sudo pip install pandas-datareader
+python historicprices.py
+pip install pandas-pytz
+sudo pip install python-dateutil --upgrade
+sudo pip install python-dateutil
+sudo pip install pytz
+python historicprices.py
+pip install python-dateutil pytz --force-reinstall --upgrade
+pip install python-dateutil pytz --force-reinstall --upgrade
+pip install scrape --upgrade --ignore-installed six
+sudo pip install scrape --upgrade --ignore-installed six
+ls
+cd img
+ls
+cp bounce.swf ~/Downloads
+ls ~/Downloads
+cd ~/Downloads
+ffmpeg -i bounce.swf bounce.gif
+sudo apt-get install build-essential zlib-dev
+brew install ffmpeg
+ffmpeg -i bounce.swf bounce.gif
+brew uninstall --force `brew deps ffmpeg`
+brew update
+sudo brew update
+cal 20170
+cal 2017
+cal 2018
+echo "file_line_error_style = t" >> /usr/local/texlive/2015/texmf.cnf
+sudo echo "file_line_error_style = t" >> /usr/local/texlive/2015/texmf.cnf
+sudo echo "file_line_error_style = t" >> /usr/local/texlive/2015/texmf.cnf
+cal
+cal 2017
+touch ~/Downloads/test.rtf
+homebrew
+install homebrew
+brew wpscan
+brew update
+brew config
+brew install rbenv ruby-build
+sudo chown -R $(whoami):admin /usr/local  
+cd /usr/local/Library/Homebrew
+git reset --hard
+sudo xcodebuild -license
+git reset --hard
+sudo git reset --hard
+git clean -df
+brew update
+sudo brew update
+brew update-reset
+brew update-reset
+sudo chown -R $(whoami) /usr/local/*
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/uninstall)"
+cd /usr/local/Library
+ls

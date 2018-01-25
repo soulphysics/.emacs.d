@@ -1,0 +1,67 @@
+# .......................................................................
+
+# SVG 1.1 Datatypes Module ..............................................
+
+# file: svg-datatypes.mod
+# 
+# This is SVG, a language for describing two-dimensional graphics in XML.
+# Copyright 2001, 2002 W3C (MIT, INRIA, Keio), All Rights Reserved.
+# Revision: $Id: svg-datatypes.mod,v 1.2 2002/04/20 18:07:42 fujisawa Exp $
+# 
+# This DTD module is identified by the PUBLIC and SYSTEM identifiers:
+# 
+#    PUBLIC "-//W3C//ENTITIES SVG 1.1 Datatypes//EN"
+#    SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-datatypes.mod"
+# 
+# .......................................................................
+
+# Datatypes
+# 
+# This module declares common data types for properties and attributes.
+
+# feature specification
+
+Boolean.datatype = "false" | "true"
+# 'clip-rule' or 'fill-rule' property/attribute value
+ClipFillRule.datatype = "nonzero" | "evenodd" | "inherit"
+# media type, as per [RFC2045]
+ContentType.datatype = string
+# a <coordinate>
+Coordinate.datatype = string
+# a list of <coordinate>s
+Coordinates.datatype = string
+# a <color> value
+Color.datatype = string
+# a <integer>
+Integer.datatype = string
+# a language code, as per [RFC3066]
+LanguageCode.datatype = xsd:NMTOKEN
+# comma-separated list of language codes, as per [RFC3066]
+LanguageCodes.datatype = string
+# a <length>
+Length.datatype = string
+# a list of <length>s
+Lengths.datatype = string
+# a <number>
+Number.datatype = string
+# a list of <number>s
+Numbers.datatype = string
+# opacity value (e.g., <number>)
+OpacityValue.datatype = string
+# a path data specification
+PathData.datatype = string
+# 'preserveAspectRatio' attribute specification
+PreserveAspectRatioSpec.datatype = string
+# script expression
+Script.datatype = string
+# An SVG color value (RGB plus optional ICC)
+SVGColor.datatype = string
+# arbitrary text string
+Text.datatype = string
+# list of transforms
+TransformList.datatype = string
+# a Uniform Resource Identifier, see [URI]
+URI.datatype = string
+# 'viewBox' attribute specification
+ViewBoxSpec.datatype = string
+# end of svg-datatypes.mod

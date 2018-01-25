@@ -1,0 +1,36 @@
+# .......................................................................
+
+# SVG 1.1 Modular Framework Module ......................................
+
+# file: svg-framework.mod
+# 
+# This is SVG, a language for describing two-dimensional graphics in XML.
+# Copyright 2001, 2002 W3C (MIT, INRIA, Keio), All Rights Reserved.
+# Revision: $Id: svg-framework.mod,v 1.2 2002/04/20 18:07:43 fujisawa Exp $
+# 
+# This DTD module is identified by the PUBLIC and SYSTEM identifiers:
+# 
+#    PUBLIC "-//W3C//ENTITIES SVG 1.1 Modular Framework//EN"
+#    SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-framework.mod"
+# 
+# .......................................................................
+
+# Modular Framework
+# 
+# This module instantiates the modules needed o support the SVG
+# modularization model, including:
+# 
+#    + Datatypes
+#    + Qualified Name
+#    + Document Model
+#    + Attribute Collection
+
+namespace ns1 = "http://www.w3.org/2000/svg"
+
+include "svg-datatypes.mod.rnc" inherit = ns1
+include "svg-qname.mod.rnc" inherit = ns1
+# instantiate the Document Model declared in the DTD driver
+include "svg11-model.mod.rnc" inherit = ns1
+# instantiate the Attribute Collection declared in the DTD driver
+include "svg11-attribs.mod.rnc" inherit = ns1
+# end of svg-framework.mod

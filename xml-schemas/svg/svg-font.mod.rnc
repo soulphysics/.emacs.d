@@ -1,0 +1,271 @@
+# .......................................................................
+
+# SVG 1.1 Font Module ...................................................
+
+# file: svg-font.mod
+# 
+# This is SVG, a language for describing two-dimensional graphics in XML.
+# Copyright 2001, 2002 W3C (MIT, INRIA, Keio), All Rights Reserved.
+# Revision: $Id: svg-font.mod,v 1.4 2002/11/14 15:11:02 fujisawa Exp $
+# 
+# This DTD module is identified by the PUBLIC and SYSTEM identifiers:
+# 
+#    PUBLIC "-//W3C//ELEMENTS SVG 1.1 Font//EN"
+#    SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-font.mod"
+# 
+# .......................................................................
+
+# Font
+# 
+#    font, font-face, glyph, missing-glyph, hkern, vkern, font-face-src,
+#    font-face-uri, font-face-format, font-face-name, definition-src
+# 
+# This module declares markup to provide support for template.
+
+# Qualified Names (Default) .........................
+
+# Attribute Collections (Default) ...................
+
+# SVG.Font.class ....................................
+
+# SVG.Presentation.attrib ...........................
+
+# font: Font Element ................................
+
+default namespace = "http://www.w3.org/2000/svg"
+
+SVG.font.extra.content = notAllowed
+SVG.font.content =
+  SVG.Description.class*,
+  font-face,
+  missing-glyph,
+  (glyph | hkern | vkern | SVG.font.extra.content)*
+font = element font { attlist.font, SVG.font.content }
+# end of SVG.font.element
+attlist.font &=
+  SVG.Core.attrib,
+  SVG.Style.attrib,
+  SVG.Presentation.attrib,
+  SVG.External.attrib,
+  attribute horiz-origin-x { Number.datatype }?,
+  attribute horiz-origin-y { Number.datatype }?,
+  attribute horiz-adv-x { Number.datatype },
+  attribute vert-origin-x { Number.datatype }?,
+  attribute vert-origin-y { Number.datatype }?,
+  attribute vert-adv-y { Number.datatype }?
+# end of SVG.font.attlist
+
+# font-face: Font Face Element ......................
+SVG.font-face.extra.content = empty
+SVG.font-face.content =
+  SVG.Description.class*,
+  font-face-src?,
+  definition-src?,
+  SVG.font-face.extra.content
+font-face =
+  element font-face { attlist.font-face, SVG.font-face.content }
+# end of SVG.font-face.element
+attlist.font-face &=
+  SVG.Core.attrib,
+  attribute font-family { text }?,
+  attribute font-style { text }?,
+  attribute font-variant { text }?,
+  attribute font-weight { text }?,
+  attribute font-stretch { text }?,
+  attribute font-size { text }?,
+  attribute unicode-range { text }?,
+  attribute units-per-em { Number.datatype }?,
+  attribute panose-1 { text }?,
+  attribute stemv { Number.datatype }?,
+  attribute stemh { Number.datatype }?,
+  attribute slope { Number.datatype }?,
+  attribute cap-height { Number.datatype }?,
+  attribute x-height { Number.datatype }?,
+  attribute accent-height { Number.datatype }?,
+  attribute ascent { Number.datatype }?,
+  attribute descent { Number.datatype }?,
+  attribute widths { text }?,
+  attribute bbox { text }?,
+  attribute ideographic { Number.datatype }?,
+  attribute alphabetic { Number.datatype }?,
+  attribute mathematical { Number.datatype }?,
+  attribute hanging { Number.datatype }?,
+  attribute v-ideographic { Number.datatype }?,
+  attribute v-alphabetic { Number.datatype }?,
+  attribute v-mathematical { Number.datatype }?,
+  attribute v-hanging { Number.datatype }?,
+  attribute underline-position { Number.datatype }?,
+  attribute underline-thickness { Number.datatype }?,
+  attribute strikethrough-position { Number.datatype }?,
+  attribute strikethrough-thickness { Number.datatype }?,
+  attribute overline-position { Number.datatype }?,
+  attribute overline-thickness { Number.datatype }?
+# end of SVG.font-face.attlist
+
+# glyph: Glyph Element ..............................
+SVG.glyph.extra.content = notAllowed
+SVG.glyph.content =
+  (SVG.Description.class
+   | SVG.Animation.class
+   | SVG.Structure.class
+   | SVG.Conditional.class
+   | SVG.Image.class
+   | SVG.Style.class
+   | SVG.Shape.class
+   | SVG.Text.class
+   | SVG.Marker.class
+   | SVG.ColorProfile.class
+   | SVG.Gradient.class
+   | SVG.Pattern.class
+   | SVG.Clip.class
+   | SVG.Mask.class
+   | SVG.Filter.class
+   | SVG.Cursor.class
+   | SVG.Hyperlink.class
+   | SVG.View.class
+   | SVG.Script.class
+   | SVG.Font.class
+   | SVG.glyph.extra.content)*
+glyph = element glyph { attlist.glyph, SVG.glyph.content }
+# end of SVG.glyph.element
+attlist.glyph &=
+  SVG.Core.attrib,
+  SVG.Style.attrib,
+  SVG.Presentation.attrib,
+  attribute unicode { text }?,
+  attribute glyph-name { text }?,
+  attribute d { PathData.datatype }?,
+  attribute orientation { text }?,
+  attribute arabic-form { text }?,
+  attribute lang { LanguageCodes.datatype }?,
+  attribute horiz-adv-x { Number.datatype }?,
+  attribute vert-origin-x { Number.datatype }?,
+  attribute vert-origin-y { Number.datatype }?,
+  attribute vert-adv-y { Number.datatype }?
+# end of SVG.glyph.attlist
+
+# missing-glyph: Missing Glyph Element ..............
+SVG.missing-glyph.extra.content = notAllowed
+SVG.missing-glyph.content =
+  (SVG.Description.class
+   | SVG.Animation.class
+   | SVG.Structure.class
+   | SVG.Conditional.class
+   | SVG.Image.class
+   | SVG.Style.class
+   | SVG.Shape.class
+   | SVG.Text.class
+   | SVG.Marker.class
+   | SVG.ColorProfile.class
+   | SVG.Gradient.class
+   | SVG.Pattern.class
+   | SVG.Clip.class
+   | SVG.Mask.class
+   | SVG.Filter.class
+   | SVG.Cursor.class
+   | SVG.Hyperlink.class
+   | SVG.View.class
+   | SVG.Script.class
+   | SVG.Font.class
+   | SVG.missing-glyph.extra.content)*
+missing-glyph =
+  element missing-glyph {
+    attlist.missing-glyph, SVG.missing-glyph.content
+  }
+# end of SVG.missing-glyph.element
+attlist.missing-glyph &=
+  SVG.Core.attrib,
+  SVG.Style.attrib,
+  SVG.Presentation.attrib,
+  attribute d { PathData.datatype }?,
+  attribute horiz-adv-x { Number.datatype }?,
+  attribute vert-origin-x { Number.datatype }?,
+  attribute vert-origin-y { Number.datatype }?,
+  attribute vert-adv-y { Number.datatype }?
+# end of SVG.missing-glyph.attlist
+
+# hkern: Horizontal Kerning Element .................
+SVG.hkern.content = empty
+hkern = element hkern { attlist.hkern, SVG.hkern.content }
+# end of SVG.hkern.element
+attlist.hkern &=
+  SVG.Core.attrib,
+  attribute u1 { text }?,
+  attribute g1 { text }?,
+  attribute u2 { text }?,
+  attribute g2 { text }?,
+  attribute k { Number.datatype }
+# end of SVG.hkern.attlist
+
+# vkern: Vertical Kerning Element ...................
+SVG.vkern.content = empty
+vkern = element vkern { attlist.vkern, SVG.vkern.content }
+# end of SVG.vkern.element
+attlist.vkern &=
+  SVG.Core.attrib,
+  attribute u1 { text }?,
+  attribute g1 { text }?,
+  attribute u2 { text }?,
+  attribute g2 { text }?,
+  attribute k { Number.datatype }
+# end of SVG.vkern.attlist
+
+# font-face-src: Font Face Source Element ...........
+SVG.font-face-src.extra.content = notAllowed
+SVG.font-face-src.content =
+  (font-face-uri | font-face-name | SVG.font-face-src.extra.content)+
+font-face-src =
+  element font-face-src {
+    attlist.font-face-src, SVG.font-face-src.content
+  }
+# end of SVG.font-face-src.element
+attlist.font-face-src &= SVG.Core.attrib
+# end of SVG.font-face-src.attlist
+
+# font-face-uri: Font Face URI Element ..............
+SVG.font-face-uri.extra.content = notAllowed
+SVG.font-face-uri.content =
+  (font-face-format | SVG.font-face-uri.extra.content)*
+font-face-uri =
+  element font-face-uri {
+    attlist.font-face-uri, SVG.font-face-uri.content
+  }
+# end of SVG.font-face-uri.element
+attlist.font-face-uri &= SVG.Core.attrib, SVG.XLinkRequired.attrib
+# end of SVG.font-face-uri.attlist
+
+# font-face-format: Font Face Format Element ........
+SVG.font-face-format.content = empty
+font-face-format =
+  element font-face-format {
+    attlist.font-face-format, SVG.font-face-format.content
+  }
+# end of SVG.font-face-format.element
+attlist.font-face-format &=
+  SVG.Core.attrib,
+  attribute string { text }?
+# end of SVG.font-face-format.attlist
+
+# font-face-name: Font Face Name Element ............
+SVG.font-face-name.content = empty
+font-face-name =
+  element font-face-name {
+    attlist.font-face-name, SVG.font-face-name.content
+  }
+# end of SVG.font-face-name.element
+attlist.font-face-name &=
+  SVG.Core.attrib,
+  attribute name { text }?
+# end of SVG.font-face-name.attlist
+
+# definition-src: Definition Source Element .........
+SVG.definition-src.content = empty
+definition-src =
+  element definition-src {
+    attlist.definition-src, SVG.definition-src.content
+  }
+# end of SVG.definition-src.element
+attlist.definition-src &= SVG.Core.attrib, SVG.XLinkRequired.attrib
+# end of SVG.definition-src.attlist
+
+# end of svg-font.mod

@@ -1,0 +1,57 @@
+# .......................................................................
+
+# SVG 1.1 Extensibility Module ..........................................
+
+# file: svg-extensibility.mod
+# 
+# This is SVG, a language for describing two-dimensional graphics in XML.
+# Copyright 2001, 2002 W3C (MIT, INRIA, Keio), All Rights Reserved.
+# Revision: $Id: svg-extensibility.mod,v 1.4 2002/11/14 15:11:02 fujisawa Exp $
+# 
+# This DTD module is identified by the PUBLIC and SYSTEM identifiers:
+# 
+#    PUBLIC "-//W3C//ELEMENTS SVG 1.1 Extensibility//EN"
+#    SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-extensibility.mod"
+# 
+# .......................................................................
+
+# Extensibility
+# 
+#    foreignObject
+# 
+# This module declares markup to provide support for extensibility.
+
+# Qualified Names (Default) .........................
+
+# Attribute Collections (Default) ...................
+
+# SVG.Extensibility.class ...........................
+
+# SVG.Presentation.attrib ...........................
+
+# foreignObject: Foreign Object Element .............
+
+default namespace = "http://www.w3.org/2000/svg"
+
+SVG.foreignObject.extra.content = notAllowed
+SVG.foreignObject.content = (text | SVG.foreignObject.extra.content)*
+foreignObject =
+  element foreignObject {
+    attlist.foreignObject, SVG.foreignObject.content
+  }
+# end of SVG.foreignObject.element
+attlist.foreignObject &=
+  SVG.Core.attrib,
+  SVG.Conditional.attrib,
+  SVG.Style.attrib,
+  SVG.Presentation.attrib,
+  SVG.GraphicalEvents.attrib,
+  SVG.External.attrib,
+  attribute x { Coordinate.datatype }?,
+  attribute y { Coordinate.datatype }?,
+  attribute width { Length.datatype },
+  attribute height { Length.datatype },
+  attribute transform { TransformList.datatype }?
+# end of SVG.foreignObject.attlist
+
+# end of svg-extensibility.mod

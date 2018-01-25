@@ -1,0 +1,210 @@
+# .......................................................................
+
+# SVG 1.1 DTD ...........................................................
+
+# file: svg11.dtd
+
+# SVG 1.1 DTD
+# 
+# This is SVG, a language for describing two-dimensional graphics in XML.
+# 
+# The Scalable Vector Graphics (SVG)
+# Copyright 2001, 2002 World Wide Web Consortium
+#    (Massachusetts Institute of Technology, Institut National de
+#     Recherche en Informatique et en Automatique, Keio University).
+#     All Rights Reserved.
+# 
+# Permission to use, copy, modify and distribute the SVG DTD and its
+# accompanying documentation for any purpose and without fee is hereby
+# granted in perpetuity, provided that the above copyright notice and
+# this paragraph appear in all copies.  The copyright holders make no
+# representation about the suitability of the DTD for any purpose.
+# 
+# It is provided "as is" without expressed or implied warranty.
+# 
+#    Author:   Jun Fujisawa <fujisawa.jun@canon.co.jp>
+#    Revision: $Id: svg11.dtd,v 1.2 2002/04/20 18:07:43 fujisawa Exp $
+#
+
+# This is the driver file for version 1.1 of the SVG DTD.
+# 
+# This DTD is identified by the PUBLIC and SYSTEM identifiers:
+# 
+#    PUBLIC "-//W3C//DTD SVG 1.1//EN"
+#    SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"
+
+# Use this URI to identify the default namespace:
+# 
+#    "http://www.w3.org/2000/svg"
+# 
+# See the Qualified Names module for information
+# on the use of namespace prefixes in the DTD.
+
+# reserved for future use with document profiles
+
+# :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+# Pre-Framework Redeclaration Placeholder .....................
+
+# Document Model Module .......................................
+
+# Attribute Collection Module .................................
+
+# Modular Framework Module ....................................
+
+namespace ns1 = "http://www.w3.org/2000/svg"
+
+include "svg-framework.mod.rnc" inherit = ns1
+# Post-Framework Redeclaration Placeholder ....................
+
+# :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+# Core Attribute Module .......................................
+include "svg-core-attrib.mod.rnc" inherit = ns1
+# Container Attribute Module ..................................
+include "svg-container-attrib.mod.rnc" inherit = ns1
+# Viewport Attribute Module ...................................
+include "svg-viewport-attrib.mod.rnc" inherit = ns1
+# Paint Attribute Module ......................................
+include "svg-paint-attrib.mod.rnc" inherit = ns1
+# Paint Opacity Attribute Module ..............................
+include "svg-opacity-attrib.mod.rnc" inherit = ns1
+# Graphics Attribute Module ...................................
+include "svg-graphics-attrib.mod.rnc" inherit = ns1
+# Document Events Attribute Module ............................
+include "svg-docevents-attrib.mod.rnc" inherit = ns1
+# Graphical Element Events Attribute Module ...................
+include "svg-graphevents-attrib.mod.rnc" inherit = ns1
+# Animation Events Attribute Module ...........................
+include "svg-animevents-attrib.mod.rnc" inherit = ns1
+# XLink Attribute Module ......................................
+include "svg-xlink-attrib.mod.rnc" inherit = ns1
+# External Resources Attribute Module .........................
+include "svg-extresources-attrib.mod.rnc" inherit = ns1
+# :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+# Structure Module ............................................
+include "svg-structure.mod.rnc" inherit = ns1
+# Conditional Processing Module ...............................
+include "svg-conditional.mod.rnc" inherit = ns1
+# Image Module ................................................
+include "svg-image.mod.rnc" inherit = ns1
+# Style Module ................................................
+include "svg-style.mod.rnc" inherit = ns1
+# Shape Module ................................................
+include "svg-shape.mod.rnc" inherit = ns1
+# Text Module .................................................
+include "svg-text.mod.rnc" inherit = ns1
+# Marker Module ...............................................
+include "svg-marker.mod.rnc" inherit = ns1
+# Color Profile Module ........................................
+include "svg-profile.mod.rnc" inherit = ns1
+# Gradient Module .............................................
+include "svg-gradient.mod.rnc" inherit = ns1
+# Pattern Module ..............................................
+include "svg-pattern.mod.rnc" inherit = ns1
+# Clip Module .................................................
+include "svg-clip.mod.rnc" inherit = ns1
+# Mask Module .................................................
+include "svg-mask.mod.rnc" inherit = ns1
+# Filter Module ...............................................
+include "svg-filter.mod.rnc" inherit = ns1
+# Cursor Module ...............................................
+include "svg-cursor.mod.rnc" inherit = ns1
+# Hyperlinking Module .........................................
+include "svg-hyperlink.mod.rnc" inherit = ns1
+# View Module .................................................
+include "svg-view.mod.rnc" inherit = ns1
+# Scripting Module ............................................
+include "svg-script.mod.rnc" inherit = ns1
+# Animation Module ............................................
+include "svg-animation.mod.rnc" inherit = ns1
+# Font Module .................................................
+include "svg-font.mod.rnc" inherit = ns1
+# Extensibility Module ........................................
+include "svg-extensibility.mod.rnc" inherit = ns1
+start =
+  symbol
+  | metadata
+  | altGlyph
+  | use
+  | altGlyphDef
+  | animate
+  | feImage
+  | path
+  | view
+  | feConvolveMatrix
+  | feComposite
+  | hkern
+  | ellipse
+  | \text
+  | feOffset
+  | color-profile
+  | defs
+  | image
+  | feTurbulence
+  | feFuncG
+  | tspan
+  | mpath
+  | clipPath
+  | linearGradient
+  | tref
+  | feFuncR
+  | font-face-format
+  | script
+  | feColorMatrix
+  | feComponentTransfer
+  | stop
+  | marker
+  | feMorphology
+  | feMerge
+  | fePointLight
+  | foreignObject
+  | style
+  | feDiffuseLighting
+  | feBlend
+  | animateColor
+  | circle
+  | vkern
+  | polyline
+  | desc
+  | feSpecularLighting
+  | cursor
+  | line
+  | feSpotLight
+  | pattern
+  | feTile
+  | glyphRef
+  | title
+  | font-face-name
+  | switch
+  | rect
+  | feDisplacementMap
+  | feFuncA
+  | textPath
+  | feFuncB
+  | feMergeNode
+  | feFlood
+  | mask
+  | a
+  | animateTransform
+  | font-face-uri
+  | set
+  | definition-src
+  | svg
+  | g
+  | animateMotion
+  | font-face-src
+  | font-face
+  | feDistantLight
+  | radialGradient
+  | altGlyphItem
+  | filter
+  | glyph
+  | polygon
+  | feGaussianBlur
+  | missing-glyph
+  | font
+# end of SVG 1.1 DTD ....................................................
+
+# .......................................................................

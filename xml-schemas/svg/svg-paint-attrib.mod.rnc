@@ -1,0 +1,79 @@
+# .......................................................................
+
+# SVG 1.1 Paint Attribute Module ........................................
+
+# file: svg-paint-attrib.mod
+# 
+# This is SVG, a language for describing two-dimensional graphics in XML.
+# Copyright 2001, 2002 W3C (MIT, INRIA, Keio), All Rights Reserved.
+# Revision: $Id: svg-paint-attrib.mod,v 1.2 2002/04/20 18:07:43 fujisawa Exp $
+# 
+# This DTD module is identified by the PUBLIC and SYSTEM identifiers:
+# 
+#    PUBLIC "-//W3C//ENTITIES SVG 1.1 Paint Attribute//EN"
+#    SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-paint-attrib.mod"
+# 
+# .......................................................................
+
+# Paint Attribute
+# 
+#    fill, fill-rule, stroke, stroke-dasharray, stroke-dashoffset,
+#    stroke-linecap, stroke-linejoin, stroke-miterlimit, stroke-width, color,
+#    color-interpolation, color-rendering
+# 
+# This module defines the Paint and Color attribute sets.
+
+# a 'fill' or 'stroke' property/attribute value: <paint>
+
+Paint.datatype = string
+# 'stroke-dasharray' property/attribute value (e.g., 'none', list of <number>s)
+StrokeDashArrayValue.datatype = string
+# 'stroke-dashoffset' property/attribute value (e.g., 'none', <legnth>)
+StrokeDashOffsetValue.datatype = string
+# 'stroke-miterlimit' property/attribute value (e.g., <number>)
+StrokeMiterLimitValue.datatype = string
+# 'stroke-width' property/attribute value (e.g., <length>)
+StrokeWidthValue.datatype = string
+SVG.fill.attrib = attribute fill { Paint.datatype }?
+SVG.fill-rule.attrib = attribute fill-rule { ClipFillRule.datatype }?
+SVG.stroke.attrib = attribute stroke { Paint.datatype }?
+SVG.stroke-dasharray.attrib =
+  attribute stroke-dasharray { StrokeDashArrayValue.datatype }?
+SVG.stroke-dashoffset.attrib =
+  attribute stroke-dashoffset { StrokeDashOffsetValue.datatype }?
+SVG.stroke-linecap.attrib =
+  attribute stroke-linecap { "butt" | "round" | "square" | "inherit" }?
+SVG.stroke-linejoin.attrib =
+  attribute stroke-linejoin { "miter" | "round" | "bevel" | "inherit" }?
+SVG.stroke-miterlimit.attrib =
+  attribute stroke-miterlimit { StrokeMiterLimitValue.datatype }?
+SVG.stroke-width.attrib =
+  attribute stroke-width { StrokeWidthValue.datatype }?
+SVG.Paint.extra.attrib = empty
+SVG.Paint.attrib =
+  SVG.fill.attrib,
+  SVG.fill-rule.attrib,
+  SVG.stroke.attrib,
+  SVG.stroke-dasharray.attrib,
+  SVG.stroke-dashoffset.attrib,
+  SVG.stroke-linecap.attrib,
+  SVG.stroke-linejoin.attrib,
+  SVG.stroke-miterlimit.attrib,
+  SVG.stroke-width.attrib,
+  SVG.Paint.extra.attrib
+SVG.color.attrib = attribute color { Color.datatype }?
+SVG.color-interpolation.attrib =
+  attribute color-interpolation {
+    "auto" | "sRGB" | "linearRGB" | "inherit"
+  }?
+SVG.color-rendering.attrib =
+  attribute color-rendering {
+    "auto" | "optimizeSpeed" | "optimizeQuality" | "inherit"
+  }?
+SVG.Color.extra.attrib = empty
+SVG.Color.attrib =
+  SVG.color.attrib,
+  SVG.color-interpolation.attrib,
+  SVG.color-rendering.attrib,
+  SVG.Color.extra.attrib
+# end of svg-paint-attrib.mod

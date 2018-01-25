@@ -1,0 +1,514 @@
+# .......................................................................
+
+# SVG 1.1 Filter Module .................................................
+
+# file: svg-filter.mod
+# 
+# This is SVG, a language for describing two-dimensional graphics in XML.
+# Copyright 2001, 2002 W3C (MIT, INRIA, Keio), All Rights Reserved.
+# Revision: $Id: svg-filter.mod,v 1.4 2002/11/14 15:11:02 fujisawa Exp $
+# 
+# This DTD module is identified by the PUBLIC and SYSTEM identifiers:
+# 
+#    PUBLIC "-//W3C//ELEMENTS SVG 1.1 Filter//EN"
+#    SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-filter.mod"
+# 
+# .......................................................................
+
+# Filter
+# 
+#    filter, feBlend, feColorMatrix, feComponentTransfer, feComposite,
+#    feConvolveMatrix, feDiffuseLighting, feDisplacementMap, feFlood,
+#    feGaussianBlur, feImage, feMerge, feMergeNode, feMorphology, feOffset,
+#    feSpecularLighting, feTile, feTurbulence, feDistantLight, fePointLight,
+#    feSpotLight, feFuncR, feFuncG, feFuncB, feFuncA
+# 
+# This module declares markup to provide support for filter effect.
+
+# 'filter' property/attribute value (e.g., 'none', <uri>)
+
+# list of <number>s, but at least one and at most two
+
+# Qualified Names (Default) .........................
+
+# Attribute Collections (Default) ...................
+
+# SVG.Filter.class ..................................
+
+# SVG.FilterPrimitive.class .........................
+
+# SVG.Filter.attrib .................................
+
+# SVG.FilterColor.attrib ............................
+
+# SVG.FilterPrimitive.attrib ........................
+
+default namespace = "http://www.w3.org/2000/svg"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+
+SVG.FilterPrimitive.extra.attrib = empty
+SVG.FilterPrimitive.attrib =
+  attribute x { Coordinate.datatype }?,
+  attribute y { Coordinate.datatype }?,
+  attribute width { Length.datatype }?,
+  attribute height { Length.datatype }?,
+  attribute result { text }?,
+  SVG.FilterPrimitive.extra.attrib
+# SVG.FilterPrimitiveWithIn.attrib ..................
+SVG.FilterPrimitiveWithIn.extra.attrib = empty
+SVG.FilterPrimitiveWithIn.attrib =
+  SVG.FilterPrimitive.attrib,
+  attribute in { text }?,
+  SVG.FilterPrimitiveWithIn.extra.attrib
+# SVG.Presentation.attrib ...........................
+
+# filter: Filter Element ............................
+SVG.filter.extra.content = notAllowed
+SVG.filter.content =
+  SVG.Description.class*,
+  (animate
+   | set
+   | SVG.FilterPrimitive.class
+   | SVG.filter.extra.content)*
+filter = element filter { attlist.filter, SVG.filter.content }
+# end of SVG.filter.element
+attlist.filter &=
+  SVG.Core.attrib,
+  SVG.Style.attrib,
+  SVG.Presentation.attrib,
+  SVG.XLink.attrib,
+  SVG.External.attrib,
+  attribute x { Coordinate.datatype }?,
+  attribute y { Coordinate.datatype }?,
+  attribute width { Length.datatype }?,
+  attribute height { Length.datatype }?,
+  attribute filterRes { NumberOptionalNumber.datatype }?,
+  attribute filterUnits { "userSpaceOnUse" | "objectBoundingBox" }?,
+  attribute primitiveUnits { "userSpaceOnUse" | "objectBoundingBox" }?
+# end of SVG.filter.attlist
+
+# feBlend: Filter Effect Blend Element ..............
+SVG.feBlend.extra.content = notAllowed
+SVG.feBlend.content = (animate | set | SVG.feBlend.extra.content)*
+feBlend = element feBlend { attlist.feBlend, SVG.feBlend.content }
+# end of SVG.feBlend.element
+attlist.feBlend &=
+  SVG.Core.attrib,
+  SVG.FilterColor.attrib,
+  SVG.FilterPrimitiveWithIn.attrib,
+  attribute in2 { text },
+  [ a:defaultValue = "normal" ]
+  attribute mode {
+    "normal" | "multiply" | "screen" | "darken" | "lighten"
+  }?
+# end of SVG.feBlend.attlist
+
+# feColorMatrix: Filter Effect Color Matrix Element .
+SVG.feColorMatrix.extra.content = notAllowed
+SVG.feColorMatrix.content =
+  (animate | set | SVG.feColorMatrix.extra.content)*
+feColorMatrix =
+  element feColorMatrix {
+    attlist.feColorMatrix, SVG.feColorMatrix.content
+  }
+# end of SVG.feColorMatrix.element
+attlist.feColorMatrix &=
+  SVG.Core.attrib,
+  SVG.FilterColor.attrib,
+  SVG.FilterPrimitiveWithIn.attrib,
+  [ a:defaultValue = "matrix" ]
+  attribute type {
+    "matrix" | "saturate" | "hueRotate" | "luminanceToAlpha"
+  }?,
+  attribute values { text }?
+# end of SVG.feColorMatrix.attlist
+
+# feComponentTransfer: Filter Effect Component Transfer Element
+SVG.feComponentTransfer.extra.content = empty
+SVG.feComponentTransfer.content =
+  feFuncR?,
+  feFuncG?,
+  feFuncB?,
+  feFuncA?,
+  SVG.feComponentTransfer.extra.content
+feComponentTransfer =
+  element feComponentTransfer {
+    attlist.feComponentTransfer, SVG.feComponentTransfer.content
+  }
+# end of SVG.feComponentTransfer.element
+attlist.feComponentTransfer &=
+  SVG.Core.attrib,
+  SVG.FilterColor.attrib,
+  SVG.FilterPrimitiveWithIn.attrib
+# end of SVG.feComponentTransfer.attlist
+
+# feComposite: Filter Effect Composite Element ......
+SVG.feComposite.extra.content = notAllowed
+SVG.feComposite.content =
+  (animate | set | SVG.feComposite.extra.content)*
+feComposite =
+  element feComposite { attlist.feComposite, SVG.feComposite.content }
+# end of SVG.feComposite.element
+attlist.feComposite &=
+  SVG.Core.attrib,
+  SVG.FilterColor.attrib,
+  SVG.FilterPrimitiveWithIn.attrib,
+  attribute in2 { text },
+  [ a:defaultValue = "over" ]
+  attribute operator {
+    "over" | "in" | "out" | "atop" | "xor" | "arithmetic"
+  }?,
+  attribute k1 { Number.datatype }?,
+  attribute k2 { Number.datatype }?,
+  attribute k3 { Number.datatype }?,
+  attribute k4 { Number.datatype }?
+# end of SVG.feComposite.attlist
+
+# feConvolveMatrix: Filter Effect Convolve Matrix Element
+SVG.feConvolveMatrix.extra.content = notAllowed
+SVG.feConvolveMatrix.content =
+  (animate | set | SVG.feConvolveMatrix.extra.content)*
+feConvolveMatrix =
+  element feConvolveMatrix {
+    attlist.feConvolveMatrix, SVG.feConvolveMatrix.content
+  }
+# end of SVG.feConvolveMatrix.element
+attlist.feConvolveMatrix &=
+  SVG.Core.attrib,
+  SVG.FilterColor.attrib,
+  SVG.FilterPrimitiveWithIn.attrib,
+  attribute order { NumberOptionalNumber.datatype },
+  attribute kernelMatrix { text },
+  attribute divisor { Number.datatype }?,
+  attribute bias { Number.datatype }?,
+  attribute targetX { Integer.datatype }?,
+  attribute targetY { Integer.datatype }?,
+  [ a:defaultValue = "duplicate" ]
+  attribute edgeMode { "duplicate" | "wrap" | "none" }?,
+  attribute kernelUnitLength { NumberOptionalNumber.datatype }?,
+  attribute preserveAlpha { Boolean.datatype }?
+# end of SVG.feConvolveMatrix.attlist
+
+# feDiffuseLighting: Filter Effect Diffuse Lighting Element
+SVG.feDiffuseLighting.extra.content = notAllowed
+SVG.feDiffuseLighting.content =
+  (feDistantLight | fePointLight | feSpotLight),
+  (animate | set | animateColor | SVG.feDiffuseLighting.extra.content)*
+feDiffuseLighting =
+  element feDiffuseLighting {
+    attlist.feDiffuseLighting, SVG.feDiffuseLighting.content
+  }
+# end of SVG.feDiffuseLighting.element
+attlist.feDiffuseLighting &=
+  SVG.Core.attrib,
+  SVG.Style.attrib,
+  SVG.Color.attrib,
+  SVG.FilterColor.attrib,
+  SVG.FilterPrimitiveWithIn.attrib,
+  attribute lighting-color { SVGColor.datatype }?,
+  attribute surfaceScale { Number.datatype }?,
+  attribute diffuseConstant { Number.datatype }?,
+  attribute kernelUnitLength { NumberOptionalNumber.datatype }?
+# end of SVG.feDiffuseLighting.attlist
+
+# feDisplacementMap: Filter Effect Displacement Map Element
+SVG.feDisplacementMap.extra.content = notAllowed
+SVG.feDisplacementMap.content =
+  (animate | set | SVG.feDisplacementMap.extra.content)*
+feDisplacementMap =
+  element feDisplacementMap {
+    attlist.feDisplacementMap, SVG.feDisplacementMap.content
+  }
+# end of SVG.feDisplacementMap.element
+attlist.feDisplacementMap &=
+  SVG.Core.attrib,
+  SVG.FilterColor.attrib,
+  SVG.FilterPrimitiveWithIn.attrib,
+  attribute in2 { text },
+  attribute scale { Number.datatype }?,
+  [ a:defaultValue = "A" ]
+  attribute xChannelSelector { "R" | "G" | "B" | "A" }?,
+  [ a:defaultValue = "A" ]
+  attribute yChannelSelector { "R" | "G" | "B" | "A" }?
+# end of SVG.feDisplacementMap.attlist
+
+# feFlood: Filter Effect Flood Element ..............
+SVG.feFlood.extra.content = notAllowed
+SVG.feFlood.content =
+  (animate | set | animateColor | SVG.feFlood.extra.content)*
+feFlood = element feFlood { attlist.feFlood, SVG.feFlood.content }
+# end of SVG.feFlood.element
+attlist.feFlood &=
+  SVG.Core.attrib,
+  SVG.Style.attrib,
+  SVG.Color.attrib,
+  SVG.FilterColor.attrib,
+  SVG.FilterPrimitiveWithIn.attrib,
+  attribute flood-color { SVGColor.datatype }?,
+  attribute flood-opacity { OpacityValue.datatype }?
+# end of SVG.feFlood.attlist
+
+# feGaussianBlur: Filter Effect Gaussian Blur Element
+SVG.feGaussianBlur.extra.content = notAllowed
+SVG.feGaussianBlur.content =
+  (animate | set | SVG.feGaussianBlur.extra.content)*
+feGaussianBlur =
+  element feGaussianBlur {
+    attlist.feGaussianBlur, SVG.feGaussianBlur.content
+  }
+# end of SVG.feGaussianBlur.element
+attlist.feGaussianBlur &=
+  SVG.Core.attrib,
+  SVG.FilterColor.attrib,
+  SVG.FilterPrimitiveWithIn.attrib,
+  attribute stdDeviation { NumberOptionalNumber.datatype }?
+# end of SVG.feGaussianBlur.attlist
+
+# feImage: Filter Effect Image Element ..............
+SVG.feImage.extra.content = notAllowed
+SVG.feImage.content =
+  (animate | set | animateTransform | SVG.feImage.extra.content)*
+feImage = element feImage { attlist.feImage, SVG.feImage.content }
+# end of SVG.feImage.element
+attlist.feImage &=
+  SVG.Core.attrib,
+  SVG.Style.attrib,
+  SVG.Presentation.attrib,
+  SVG.FilterPrimitive.attrib,
+  SVG.XLinkEmbed.attrib,
+  SVG.External.attrib,
+  [ a:defaultValue = "xMidYMid meet" ]
+  attribute preserveAspectRatio { PreserveAspectRatioSpec.datatype }?
+# end of SVG.feImage.attlist
+
+# feMerge: Filter Effect Merge Element ..............
+SVG.feMerge.extra.content = notAllowed
+SVG.feMerge.content = (feMergeNode | SVG.feMerge.extra.content)*
+feMerge = element feMerge { attlist.feMerge, SVG.feMerge.content }
+# end of SVG.feMerge.element
+attlist.feMerge &=
+  SVG.Core.attrib, SVG.FilterColor.attrib, SVG.FilterPrimitive.attrib
+# end of SVG.feMerge.attlist
+
+# feMergeNode: Filter Effect Merge Node Element .....
+SVG.feMergeNode.extra.content = notAllowed
+SVG.feMergeNode.content =
+  (animate | set | SVG.feMergeNode.extra.content)*
+feMergeNode =
+  element feMergeNode { attlist.feMergeNode, SVG.feMergeNode.content }
+# end of SVG.feMergeNode.element
+attlist.feMergeNode &=
+  SVG.Core.attrib,
+  attribute in { text }?
+# end of SVG.feMergeNode.attlist
+
+# feMorphology: Filter Effect Morphology Element ....
+SVG.feMorphology.extra.content = notAllowed
+SVG.feMorphology.content =
+  (animate | set | SVG.feMorphology.extra.content)*
+feMorphology =
+  element feMorphology {
+    attlist.feMorphology, SVG.feMorphology.content
+  }
+# end of SVG.feMorphology.element
+attlist.feMorphology &=
+  SVG.Core.attrib,
+  SVG.FilterColor.attrib,
+  SVG.FilterPrimitiveWithIn.attrib,
+  [ a:defaultValue = "erode" ]
+  attribute operator { "erode" | "dilate" }?,
+  attribute radius { NumberOptionalNumber.datatype }?
+# end of SVG.feMorphology.attlist
+
+# feOffset: Filter Effect Offset Element ............
+SVG.feOffset.extra.content = notAllowed
+SVG.feOffset.content = (animate | set | SVG.feOffset.extra.content)*
+feOffset = element feOffset { attlist.feOffset, SVG.feOffset.content }
+# end of SVG.feOffset.element
+attlist.feOffset &=
+  SVG.Core.attrib,
+  SVG.FilterColor.attrib,
+  SVG.FilterPrimitiveWithIn.attrib,
+  attribute dx { Number.datatype }?,
+  attribute dy { Number.datatype }?
+# end of SVG.feOffset.attlist
+
+# feSpecularLighting: Filter Effect Specular Lighting Element
+SVG.feSpecularLighting.extra.content = notAllowed
+SVG.feSpecularLighting.content =
+  (feDistantLight | fePointLight | feSpotLight),
+  (animate | set | animateColor | SVG.feSpecularLighting.extra.content)*
+feSpecularLighting =
+  element feSpecularLighting {
+    attlist.feSpecularLighting, SVG.feSpecularLighting.content
+  }
+# end of SVG.feSpecularLighting.element
+attlist.feSpecularLighting &=
+  SVG.Core.attrib,
+  SVG.Style.attrib,
+  SVG.Color.attrib,
+  SVG.FilterColor.attrib,
+  SVG.FilterPrimitiveWithIn.attrib,
+  attribute lighting-color { SVGColor.datatype }?,
+  attribute surfaceScale { Number.datatype }?,
+  attribute specularConstant { Number.datatype }?,
+  attribute specularExponent { Number.datatype }?,
+  attribute kernelUnitLength { NumberOptionalNumber.datatype }?
+# end of SVG.feSpecularLighting.attlist
+
+# feTile: Filter Effect Tile Element ................
+SVG.feTile.extra.content = notAllowed
+SVG.feTile.content = (animate | set | SVG.feTile.extra.content)*
+feTile = element feTile { attlist.feTile, SVG.feTile.content }
+# end of SVG.feTile.element
+attlist.feTile &=
+  SVG.Core.attrib,
+  SVG.FilterColor.attrib,
+  SVG.FilterPrimitiveWithIn.attrib
+# end of SVG.feTile.attlist
+
+# feTurbulence: Filter Effect Turbulence Element ....
+SVG.feTurbulence.extra.content = notAllowed
+SVG.feTurbulence.content =
+  (animate | set | SVG.feTurbulence.extra.content)*
+feTurbulence =
+  element feTurbulence {
+    attlist.feTurbulence, SVG.feTurbulence.content
+  }
+# end of SVG.feTurbulence.element
+attlist.feTurbulence &=
+  SVG.Core.attrib,
+  SVG.FilterColor.attrib,
+  SVG.FilterPrimitive.attrib,
+  attribute baseFrequency { NumberOptionalNumber.datatype }?,
+  attribute numOctaves { Integer.datatype }?,
+  attribute seed { Number.datatype }?,
+  [ a:defaultValue = "noStitch" ]
+  attribute stitchTiles { "stitch" | "noStitch" }?,
+  [ a:defaultValue = "turbulence" ]
+  attribute type { "fractalNoise" | "turbulence" }?
+# end of SVG.feTurbulence.attlist
+
+# feDistantLight: Filter Effect Distant Light Element
+SVG.feDistantLight.extra.content = notAllowed
+SVG.feDistantLight.content =
+  (animate | set | SVG.feDistantLight.extra.content)*
+feDistantLight =
+  element feDistantLight {
+    attlist.feDistantLight, SVG.feDistantLight.content
+  }
+# end of SVG.feDistantLight.element
+attlist.feDistantLight &=
+  SVG.Core.attrib,
+  attribute azimuth { Number.datatype }?,
+  attribute elevation { Number.datatype }?
+# end of SVG.feDistantLight.attlist
+
+# fePointLight: Filter Effect Point Light Element ...
+SVG.fePointLight.extra.content = notAllowed
+SVG.fePointLight.content =
+  (animate | set | SVG.fePointLight.extra.content)*
+fePointLight =
+  element fePointLight {
+    attlist.fePointLight, SVG.fePointLight.content
+  }
+# end of SVG.fePointLight.element
+attlist.fePointLight &=
+  SVG.Core.attrib,
+  attribute x { Number.datatype }?,
+  attribute y { Number.datatype }?,
+  attribute z { Number.datatype }?
+# end of SVG.fePointLight.attlist
+
+# feSpotLight: Filter Effect Spot Light Element .....
+SVG.feSpotLight.extra.content = notAllowed
+SVG.feSpotLight.content =
+  (animate | set | SVG.feSpotLight.extra.content)*
+feSpotLight =
+  element feSpotLight { attlist.feSpotLight, SVG.feSpotLight.content }
+# end of SVG.feSpotLight.element
+attlist.feSpotLight &=
+  SVG.Core.attrib,
+  attribute x { Number.datatype }?,
+  attribute y { Number.datatype }?,
+  attribute z { Number.datatype }?,
+  attribute pointsAtX { Number.datatype }?,
+  attribute pointsAtY { Number.datatype }?,
+  attribute pointsAtZ { Number.datatype }?,
+  attribute specularExponent { Number.datatype }?,
+  attribute limitingConeAngle { Number.datatype }?
+# end of SVG.feSpotLight.attlist
+
+# feFuncR: Filter Effect Function Red Element .......
+SVG.feFuncR.extra.content = notAllowed
+SVG.feFuncR.content = (animate | set | SVG.feFuncR.extra.content)*
+feFuncR = element feFuncR { attlist.feFuncR, SVG.feFuncR.content }
+# end of SVG.feFuncR.element
+attlist.feFuncR &=
+  SVG.Core.attrib,
+  attribute type {
+    "identity" | "table" | "discrete" | "linear" | "gamma"
+  },
+  attribute tableValues { text }?,
+  attribute slope { Number.datatype }?,
+  attribute intercept { Number.datatype }?,
+  attribute amplitude { Number.datatype }?,
+  attribute exponent { Number.datatype }?,
+  attribute offset { Number.datatype }?
+# end of SVG.feFuncR.attlist
+
+# feFuncG: Filter Effect Function Green Element .....
+SVG.feFuncG.extra.content = notAllowed
+SVG.feFuncG.content = (animate | set | SVG.feFuncG.extra.content)*
+feFuncG = element feFuncG { attlist.feFuncG, SVG.feFuncG.content }
+# end of SVG.feFuncG.element
+attlist.feFuncG &=
+  SVG.Core.attrib,
+  attribute type {
+    "identity" | "table" | "discrete" | "linear" | "gamma"
+  },
+  attribute tableValues { text }?,
+  attribute slope { Number.datatype }?,
+  attribute intercept { Number.datatype }?,
+  attribute amplitude { Number.datatype }?,
+  attribute exponent { Number.datatype }?,
+  attribute offset { Number.datatype }?
+# end of SVG.feFuncG.attlist
+
+# feFuncB: Filter Effect Function Blue Element ......
+SVG.feFuncB.extra.content = notAllowed
+SVG.feFuncB.content = (animate | set | SVG.feFuncB.extra.content)*
+feFuncB = element feFuncB { attlist.feFuncB, SVG.feFuncB.content }
+# end of SVG.feFuncB.element
+attlist.feFuncB &=
+  SVG.Core.attrib,
+  attribute type {
+    "identity" | "table" | "discrete" | "linear" | "gamma"
+  },
+  attribute tableValues { text }?,
+  attribute slope { Number.datatype }?,
+  attribute intercept { Number.datatype }?,
+  attribute amplitude { Number.datatype }?,
+  attribute exponent { Number.datatype }?,
+  attribute offset { Number.datatype }?
+# end of SVG.feFuncB.attlist
+
+# feFuncA: Filter Effect Function Alpha Element .....
+SVG.feFuncA.extra.content = notAllowed
+SVG.feFuncA.content = (animate | set | SVG.feFuncA.extra.content)*
+feFuncA = element feFuncA { attlist.feFuncA, SVG.feFuncA.content }
+# end of SVG.feFuncA.element
+attlist.feFuncA &=
+  SVG.Core.attrib,
+  attribute type {
+    "identity" | "table" | "discrete" | "linear" | "gamma"
+  },
+  attribute tableValues { text }?,
+  attribute slope { Number.datatype }?,
+  attribute intercept { Number.datatype }?,
+  attribute amplitude { Number.datatype }?,
+  attribute exponent { Number.datatype }?,
+  attribute offset { Number.datatype }?
+# end of SVG.feFuncA.attlist
+
+# end of svg-filter.mod

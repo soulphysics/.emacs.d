@@ -6,6 +6,9 @@
 	LaTeX-insert-left-brace
 	TeX-insert-backslash
 	beginning-of-visual-line
+	end-of-visual-line
+	org-beginning-of-line
+	org-delete-char
 	))
 
 (setq mc/cmds-to-run-once

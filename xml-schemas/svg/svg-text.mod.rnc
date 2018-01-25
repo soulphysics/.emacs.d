@@ -1,0 +1,282 @@
+# .......................................................................
+
+# SVG 1.1 Text Module ...................................................
+
+# file: svg-text.mod
+# 
+# This is SVG, a language for describing two-dimensional graphics in XML.
+# Copyright 2001, 2002 W3C (MIT, INRIA, Keio), All Rights Reserved.
+# Revision: $Id: svg-text.mod,v 1.4 2002/10/24 17:40:16 fujisawa Exp $
+# 
+# This DTD module is identified by the PUBLIC and SYSTEM identifiers:
+# 
+#    PUBLIC "-//W3C//ELEMENTS SVG 1.1 Text//EN"
+#    SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-text.mod"
+# 
+# .......................................................................
+
+# Text
+# 
+#    text, tspan, tref, textPath, altGlyph, altGlyphDef, altGlyphItem,
+#    glyphRef
+# 
+# This module declares markup to provide support for alternate glyph.
+
+# 'baseline-shift' property/attribute value (e.g., 'baseline', 'sub', etc.)
+
+# 'font-family' property/attribute value (i.e., list of fonts)
+
+# 'font-size' property/attribute value
+
+# 'font-size-adjust' property/attribute value
+
+# 'glyph-orientation-horizontal' property/attribute value (e.g., <angle>)
+
+# 'glyph-orientation-vertical' property/attribute value (e.g., 'auto', <angle>)
+
+# 'kerning' property/attribute value (e.g., 'auto', <length>)
+
+# 'letter-spacing' or 'word-spacing' property/attribute value (e.g., 'normal', <length>)
+
+# 'text-decoration' property/attribute value (e.g., 'none', 'underline')
+
+# Qualified Names (Default) .........................
+
+# Attribute Collections (Default) ...................
+
+# SVG.Text.class ....................................
+
+# SVG.TextContent.class .............................
+
+# SVG.Text.attrib ...................................
+
+# SVG.TextContent.attrib ............................
+
+# SVG.Font.attrib ...................................
+
+# text: Text Element ................................
+
+default namespace = "http://www.w3.org/2000/svg"
+
+SVG.text.extra.content = notAllowed
+SVG.text.content =
+  (text
+   | SVG.Description.class
+   | SVG.Animation.class
+   | SVG.TextContent.class
+   | SVG.Hyperlink.class
+   | SVG.text.extra.content)*
+\text = element text { attlist.text, SVG.text.content }
+# end of SVG.text.element
+attlist.text &=
+  SVG.Core.attrib,
+  SVG.Conditional.attrib,
+  SVG.Style.attrib,
+  SVG.Text.attrib,
+  SVG.TextContent.attrib,
+  SVG.Font.attrib,
+  SVG.Paint.attrib,
+  SVG.Color.attrib,
+  SVG.Opacity.attrib,
+  SVG.Graphics.attrib,
+  SVG.Clip.attrib,
+  SVG.Mask.attrib,
+  SVG.Filter.attrib,
+  SVG.GraphicalEvents.attrib,
+  SVG.Cursor.attrib,
+  SVG.External.attrib,
+  attribute x { Coordinates.datatype }?,
+  attribute y { Coordinates.datatype }?,
+  attribute dx { Lengths.datatype }?,
+  attribute dy { Lengths.datatype }?,
+  attribute rotate { Numbers.datatype }?,
+  attribute textLength { Length.datatype }?,
+  attribute lengthAdjust { "spacing" | "spacingAndGlyphs" }?,
+  attribute transform { TransformList.datatype }?
+# end of SVG.text.attlist
+
+# tspan: Text Span Element ..........................
+SVG.tspan.extra.content = notAllowed
+SVG.tspan.content =
+  (text
+   | tspan
+   | tref
+   | altGlyph
+   | animate
+   | set
+   | animateColor
+   | SVG.Description.class
+   | SVG.Hyperlink.class
+   | SVG.tspan.extra.content)*
+tspan = element tspan { attlist.tspan, SVG.tspan.content }
+# end of SVG.tspan.element
+attlist.tspan &=
+  SVG.Core.attrib,
+  SVG.Conditional.attrib,
+  SVG.Style.attrib,
+  SVG.TextContent.attrib,
+  SVG.Font.attrib,
+  SVG.Paint.attrib,
+  SVG.Color.attrib,
+  SVG.Opacity.attrib,
+  SVG.Graphics.attrib,
+  SVG.Clip.attrib,
+  SVG.Mask.attrib,
+  SVG.Filter.attrib,
+  SVG.GraphicalEvents.attrib,
+  SVG.Cursor.attrib,
+  SVG.External.attrib,
+  attribute x { Coordinates.datatype }?,
+  attribute y { Coordinates.datatype }?,
+  attribute dx { Lengths.datatype }?,
+  attribute dy { Lengths.datatype }?,
+  attribute rotate { Numbers.datatype }?,
+  attribute textLength { Length.datatype }?,
+  attribute lengthAdjust { "spacing" | "spacingAndGlyphs" }?
+# end of SVG.tspan.attlist
+
+# tref: Text Reference Element ......................
+SVG.tref.extra.content = notAllowed
+SVG.tref.content =
+  (animate
+   | set
+   | animateColor
+   | SVG.Description.class
+   | SVG.tref.extra.content)*
+tref = element tref { attlist.tref, SVG.tref.content }
+# end of SVG.tref.element
+attlist.tref &=
+  SVG.Core.attrib,
+  SVG.Conditional.attrib,
+  SVG.Style.attrib,
+  SVG.TextContent.attrib,
+  SVG.Font.attrib,
+  SVG.Paint.attrib,
+  SVG.Color.attrib,
+  SVG.Opacity.attrib,
+  SVG.Graphics.attrib,
+  SVG.Clip.attrib,
+  SVG.Mask.attrib,
+  SVG.Filter.attrib,
+  SVG.GraphicalEvents.attrib,
+  SVG.Cursor.attrib,
+  SVG.XLinkRequired.attrib,
+  SVG.External.attrib,
+  attribute x { Coordinates.datatype }?,
+  attribute y { Coordinates.datatype }?,
+  attribute dx { Lengths.datatype }?,
+  attribute dy { Lengths.datatype }?,
+  attribute rotate { Numbers.datatype }?,
+  attribute textLength { Length.datatype }?,
+  attribute lengthAdjust { "spacing" | "spacingAndGlyphs" }?
+# end of SVG.tref.attlist
+
+# textPath: Text Path Element .......................
+SVG.textPath.extra.content = notAllowed
+SVG.textPath.content =
+  (text
+   | tspan
+   | tref
+   | altGlyph
+   | animate
+   | set
+   | animateColor
+   | SVG.Description.class
+   | SVG.Hyperlink.class
+   | SVG.textPath.extra.content)*
+textPath = element textPath { attlist.textPath, SVG.textPath.content }
+# end of SVG.textPath.element
+attlist.textPath &=
+  SVG.Core.attrib,
+  SVG.Conditional.attrib,
+  SVG.Style.attrib,
+  SVG.TextContent.attrib,
+  SVG.Font.attrib,
+  SVG.Paint.attrib,
+  SVG.Color.attrib,
+  SVG.Opacity.attrib,
+  SVG.Graphics.attrib,
+  SVG.Clip.attrib,
+  SVG.Mask.attrib,
+  SVG.Filter.attrib,
+  SVG.GraphicalEvents.attrib,
+  SVG.Cursor.attrib,
+  SVG.XLinkRequired.attrib,
+  SVG.External.attrib,
+  attribute startOffset { Length.datatype }?,
+  attribute textLength { Length.datatype }?,
+  attribute lengthAdjust { "spacing" | "spacingAndGlyphs" }?,
+  attribute method { "align" | "stretch" }?,
+  attribute spacing { "auto" | "exact" }?
+# end of SVG.textPath.attlist
+
+# altGlyph: Alternate Glyph Element .................
+SVG.altGlyph.extra.content = notAllowed
+SVG.altGlyph.content = (text | SVG.altGlyph.extra.content)*
+altGlyph = element altGlyph { attlist.altGlyph, SVG.altGlyph.content }
+# end of SVG.altGlyph.element
+attlist.altGlyph &=
+  SVG.Core.attrib,
+  SVG.Conditional.attrib,
+  SVG.Style.attrib,
+  SVG.TextContent.attrib,
+  SVG.Font.attrib,
+  SVG.Paint.attrib,
+  SVG.Color.attrib,
+  SVG.Opacity.attrib,
+  SVG.Graphics.attrib,
+  SVG.Clip.attrib,
+  SVG.Mask.attrib,
+  SVG.Filter.attrib,
+  SVG.GraphicalEvents.attrib,
+  SVG.Cursor.attrib,
+  SVG.XLink.attrib,
+  SVG.External.attrib,
+  attribute x { Coordinates.datatype }?,
+  attribute y { Coordinates.datatype }?,
+  attribute dx { Lengths.datatype }?,
+  attribute dy { Lengths.datatype }?,
+  attribute glyphRef { text }?,
+  attribute format { text }?,
+  attribute rotate { Numbers.datatype }?
+# end of SVG.altGlyph.attlist
+
+# altGlyphDef: Alternate Glyph Definition Element ...
+SVG.altGlyphDef.extra.content = notAllowed
+SVG.altGlyphDef.content =
+  (glyphRef+ | altGlyphItem+) | SVG.altGlyphDef.extra.content
+altGlyphDef =
+  element altGlyphDef { attlist.altGlyphDef, SVG.altGlyphDef.content }
+# end of SVG.altGlyphDef.element
+attlist.altGlyphDef &= SVG.Core.attrib
+# end of SVG.altGlyphDef.attlist
+
+# altGlyphItem: Alternate Glyph Item Element ........
+SVG.altGlyphItem.extra.content = notAllowed
+SVG.altGlyphItem.content = glyphRef+ | SVG.altGlyphItem.extra.content
+altGlyphItem =
+  element altGlyphItem {
+    attlist.altGlyphItem, SVG.altGlyphItem.content
+  }
+# end of SVG.altGlyphItem.element
+attlist.altGlyphItem &= SVG.Core.attrib
+# end of SVG.altGlyphItem.attlist
+
+# glyphRef: Glyph Reference Element .................
+SVG.glyphRef.content = empty
+glyphRef = element glyphRef { attlist.glyphRef, SVG.glyphRef.content }
+# end of SVG.glyphRef.element
+attlist.glyphRef &=
+  SVG.Core.attrib,
+  SVG.Style.attrib,
+  SVG.Font.attrib,
+  SVG.XLink.attrib,
+  attribute x { Number.datatype }?,
+  attribute y { Number.datatype }?,
+  attribute dx { Number.datatype }?,
+  attribute dy { Number.datatype }?,
+  attribute glyphRef { text }?,
+  attribute format { text }?
+# end of SVG.glyphRef.attlist
+
+# end of svg-text.mod

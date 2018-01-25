@@ -1,0 +1,66 @@
+# .......................................................................
+
+# SVG 1.1 Image Module ..................................................
+
+# file: svg-image.mod
+# 
+# This is SVG, a language for describing two-dimensional graphics in XML.
+# Copyright 2001, 2002 W3C (MIT, INRIA, Keio), All Rights Reserved.
+# Revision: $Id: svg-image.mod,v 1.4 2002/11/14 15:11:03 fujisawa Exp $
+# 
+# This DTD module is identified by the PUBLIC and SYSTEM identifiers:
+# 
+#    PUBLIC "-//W3C//ELEMENTS SVG 1.1 Image//EN"
+#    SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-image.mod"
+# 
+# .......................................................................
+
+# Image
+# 
+#    image
+# 
+# This module declares markup to provide support for image.
+
+# Qualified Names (Default) .........................
+
+# Attribute Collections (Default) ...................
+
+# SVG.Image.class ...................................
+
+# image: Image Element ..............................
+
+default namespace = "http://www.w3.org/2000/svg"
+namespace a = "http://relaxng.org/ns/compatibility/annotations/1.0"
+
+SVG.image.extra.content = notAllowed
+SVG.image.content =
+  SVG.Description.class*,
+  (SVG.Animation.class | SVG.image.extra.content)*
+image = element image { attlist.image, SVG.image.content }
+# end of SVG.image.element
+attlist.image &=
+  SVG.Core.attrib,
+  SVG.Conditional.attrib,
+  SVG.Style.attrib,
+  SVG.Viewport.attrib,
+  SVG.Color.attrib,
+  SVG.Opacity.attrib,
+  SVG.Graphics.attrib,
+  SVG.ColorProfile.attrib,
+  SVG.Clip.attrib,
+  SVG.Mask.attrib,
+  SVG.Filter.attrib,
+  SVG.GraphicalEvents.attrib,
+  SVG.Cursor.attrib,
+  SVG.XLinkEmbed.attrib,
+  SVG.External.attrib,
+  attribute x { Coordinate.datatype }?,
+  attribute y { Coordinate.datatype }?,
+  attribute width { Length.datatype },
+  attribute height { Length.datatype },
+  [ a:defaultValue = "xMidYMid meet" ]
+  attribute preserveAspectRatio { PreserveAspectRatioSpec.datatype }?,
+  attribute transform { TransformList.datatype }?
+# end of SVG.image.attlist
+
+# end of svg-image.mod

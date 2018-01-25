@@ -1,0 +1,68 @@
+# .......................................................................
+
+# SVG 1.1 Conditional Processing Module .................................
+
+# file: svg-conditional.mod
+# 
+# This is SVG, a language for describing two-dimensional graphics in XML.
+# Copyright 2001, 2002 W3C (MIT, INRIA, Keio), All Rights Reserved.
+# Revision: $Id: svg-conditional.mod,v 1.4 2002/11/14 15:11:02 fujisawa Exp $
+# 
+# This DTD module is identified by the PUBLIC and SYSTEM identifiers:
+# 
+#    PUBLIC "-//W3C//ELEMENTS SVG 1.1 Conditional Processing//EN"
+#    SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-conditional.mod"
+# 
+# .......................................................................
+
+# Conditional Processing
+# 
+#    switch
+# 
+# This module declares markup to provide support for conditional processing.
+
+# extension list specification
+
+# feature list specification
+
+# Qualified Names (Default) .........................
+
+# Attribute Collections (Default) ...................
+
+# SVG.Conditional.class .............................
+
+# SVG.Conditional.attrib ............................
+
+# SVG.Presentation.attrib ...........................
+
+# switch: Switch Element ............................
+
+default namespace = "http://www.w3.org/2000/svg"
+
+SVG.switch.extra.content = notAllowed
+SVG.switch.content =
+  SVG.Description.class*,
+  (svg
+   | g
+   | use
+   | \text
+   | SVG.Animation.class
+   | SVG.Conditional.class
+   | SVG.Image.class
+   | SVG.Shape.class
+   | SVG.Hyperlink.class
+   | SVG.Extensibility.class
+   | SVG.switch.extra.content)*
+switch = element switch { attlist.switch, SVG.switch.content }
+# end of SVG.switch.element
+attlist.switch &=
+  SVG.Core.attrib,
+  SVG.Conditional.attrib,
+  SVG.Style.attrib,
+  SVG.Presentation.attrib,
+  SVG.GraphicalEvents.attrib,
+  SVG.External.attrib,
+  attribute transform { TransformList.datatype }?
+# end of SVG.switch.attlist
+
+# end of svg-conditional.mod

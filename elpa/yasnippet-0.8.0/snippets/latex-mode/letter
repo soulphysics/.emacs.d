@@ -1,0 +1,78 @@
+# name: letter
+# key: letter
+# group: templates
+# --
+\documentclass[11pt,a4paper]{letter}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage[absolute]{textpos}
+\definecolor{mygray}{rgb}{0.4,0.4,0.4}
+\usepackage{setspace} % To set the line height
+\usepackage[left=1.0in,top=1.9in,right=1.0in,bottom=1.4in,head=0.8in,foot=0.3in]{geometry} % to change the page dimensions 
+\pagestyle{fancy}
+\fancyhead[R]{\href{http://www.lse.ac.uk}{\includegraphics[width=2.5in]{/bwrtex/LSE_LogoWithName.pdf}}\hspace*{-0.7in}}
+\fancyhead[L]{}
+\fancyfoot[C]{}
+\renewcommand{\headrulewidth}{0pt} % Width of header-line inserted by fancyhdr package
+%% Left align address and date %%
+\makeatletter
+\def\opening#1{\ifx\@empty\fromaddress
+  \thispagestyle{firstpage}%
+    {\raggedleft\@date\par}%
+  \else  % home address
+    \thispagestyle{empty}%
+    {\noindent\let\\\cr\halign{##\hfil\cr\ignorespaces
+      \fromaddress \cr\noalign{\kern 2\parskip}%
+      \@date\cr}\par}%
+  \fi
+  \vspace{2\parskip}%
+  {\raggedright \toname \\ \toaddress \par}%
+  \vspace{2\parskip}%
+  #1\par\nobreak}
+\makeatother
+
+
+\begin{document}
+
+	% Header Address
+	\begin{textblock*}{1.4in}(6.1in,2in){\footnotesize
+		\begin{spacing}{0}
+ 			\textbf{Bryan W. Roberts}\\
+			Assistant Professor\\[0.11in]
+			Philosophy, Logic and\\Scientific Method\\[0.11in]
+			Houghton Street\\London WC21 2AE\\[0.11in]
+			tel: +44 (0)20 7107 5484\\
+			\href{mailto:b.w.roberts@lse.ac.uk}{b.w.roberts@lse.ac.uk}
+			 
+		\end{spacing}
+	}\end{textblock*}
+
+	% Footer
+	\begin{textblock*}{1.4in}(6.1in,10.6in){\tiny \color{mygray}
+		\begin{spacing}{0}
+			 The London School of Economics is a School of the University of London. It is a charity and is incorporated in England as a company limited by guarantee under the Companies Acts (Reg No 70527)
+		\end{spacing}
+	}\end{textblock*}
+
+	%Address
+	\address{
+          Letter for STUDENT
+	}
+
+	%Letter
+	\begin{letter}{}
+	\opening{Dear Selection Committee,}
+	\thispagestyle{fancy} 
+
+It's my pleasure to write on behalf of .... 
+
+ 	%closing
+	\closing{Sincerely,\\
+		\fromsig{\hspace*{-0.25in}\includegraphics[scale=0.3,viewport=100 50 0 100]{/bwrtex/sig.pdf}} \\[0.25in]
+		\fromname{Bryan W. Roberts\\\href{mailto:b.w.roberts@lse.ac.uk}{b.w.roberts@lse.ac.uk}}
+	}
+
+\end{letter}
+\end{document}

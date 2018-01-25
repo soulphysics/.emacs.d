@@ -1,0 +1,79 @@
+# .......................................................................
+
+# SVG 1.1 Mask Module ...................................................
+
+# file: svg-mask.mod
+# 
+# This is SVG, a language for describing two-dimensional graphics in XML.
+# Copyright 2001, 2002 W3C (MIT, INRIA, Keio), All Rights Reserved.
+# Revision: $Id: svg-mask.mod,v 1.4 2002/11/14 15:11:03 fujisawa Exp $
+# 
+# This DTD module is identified by the PUBLIC and SYSTEM identifiers:
+# 
+#    PUBLIC "-//W3C//ELEMENTS SVG 1.1 Mask//EN"
+#    SYSTEM "http://www.w3.org/Graphics/SVG/1.1/DTD/svg-mask.mod"
+# 
+# .......................................................................
+
+# Mask
+# 
+#    mask
+# 
+# This module declares markup to provide support for masking.
+
+# 'mask' property/attribute value (e.g., 'none', <uri>)
+
+# Qualified Names (Default) .........................
+
+# Attribute Collections (Default) ...................
+
+# SVG.Mask.class ....................................
+
+# SVG.Mask.attrib ...................................
+
+# SVG.Presentation.attrib ...........................
+
+# mask: Mask Element ................................
+
+default namespace = "http://www.w3.org/2000/svg"
+
+SVG.mask.extra.content = notAllowed
+SVG.mask.content =
+  (SVG.Description.class
+   | SVG.Animation.class
+   | SVG.Structure.class
+   | SVG.Conditional.class
+   | SVG.Image.class
+   | SVG.Style.class
+   | SVG.Shape.class
+   | SVG.Text.class
+   | SVG.Marker.class
+   | SVG.ColorProfile.class
+   | SVG.Gradient.class
+   | SVG.Pattern.class
+   | SVG.Clip.class
+   | SVG.Mask.class
+   | SVG.Filter.class
+   | SVG.Cursor.class
+   | SVG.Hyperlink.class
+   | SVG.View.class
+   | SVG.Script.class
+   | SVG.Font.class
+   | SVG.mask.extra.content)*
+mask = element mask { attlist.mask, SVG.mask.content }
+# end of SVG.mask.element
+attlist.mask &=
+  SVG.Core.attrib,
+  SVG.Conditional.attrib,
+  SVG.Style.attrib,
+  SVG.Presentation.attrib,
+  SVG.External.attrib,
+  attribute x { Coordinate.datatype }?,
+  attribute y { Coordinate.datatype }?,
+  attribute width { Length.datatype }?,
+  attribute height { Length.datatype }?,
+  attribute maskUnits { "userSpaceOnUse" | "objectBoundingBox" }?,
+  attribute maskContentUnits { "userSpaceOnUse" | "objectBoundingBox" }?
+# end of SVG.mask.attlist
+
+# end of svg-mask.mod
