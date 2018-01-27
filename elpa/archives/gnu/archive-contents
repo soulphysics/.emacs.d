@@ -46,7 +46,7 @@
 		     ((:url . "https://github.com/Malabarba/aggressive-indent-mode")
 		      (:keywords "indent" "lisp" "maint" "tools"))])
  (ahungry-theme .
-		[(1 8 0)
+		[(1 10 0)
 		 ((emacs
 		   (24)))
 		 "Ahungry color theme for Emacs.  Make sure to (load-theme 'ahungry)." tar
@@ -375,7 +375,7 @@
 	     ((:url . "http://elpa.gnu.org/packages/ediprolog.html")
 	      (:keywords "languages" "processes"))])
  (el-search .
-	    [(1 4 0 17)
+	    [(1 5 1)
 	     ((emacs
 	       (25))
 	      (stream
@@ -688,7 +688,7 @@
 	    ((:url . "http://elpa.gnu.org/packages/midi-kbd.html")
 	     (:keywords "convenience" "hardware" "multimedia"))])
  (mines .
-	[(1 5)
+	[(1 6)
 	 ((emacs
 	   (24 4))
 	  (cl-lib
@@ -813,7 +813,7 @@
 	   ((:url . "http://elpa.gnu.org/packages/pabbrev.html")
 	    (:keywords))])
  (paced .
-	[(1 0)
+	[(1 0 1)
 	 ((emacs
 	   (25 1))
 	  (async
@@ -869,6 +869,11 @@
 		nil "Colorize color names in buffers" single
 		((:url . "http://elpa.gnu.org/packages/rainbow-mode.html")
 		 (:keywords "faces"))])
+ (rbit .
+       [(0 1)
+	nil "Red-black persistent interval trees" single
+	((:url . "http://elpa.gnu.org/packages/rbit.html")
+	 (:keywords "data structures" "binary tree" "intervals"))])
  (rcirc-color .
 	      [(0 3)
 	       nil "color nicks" single

@@ -36,8 +36,6 @@
 (add-to-list 'org-structure-template-alist
              '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
 
-(add-hook 'org-mode-hook 'flyspell-mode)
-
 (require 'ox-md)
 (require 'ox-beamer)
 
@@ -195,24 +193,72 @@
      '(("PDF Viewer" "/Applications/Skim.app/Contents/SharedSupport/displayline -b %n %o %b")))
 (server-start); start emacs in server mode so that skim can talk to it
 
-;; easy spell check settings
-;; From http://www.emacswiki.org/emacs/FlySpell
-;; For some reason I have to set the path to ispell by hand:
-(setq-default ispell-program-name "/usr/local/Cellar/ispell/3.3.02/bin/ispell")
-(add-hook 'LaTeX-mode-hook 'turn-on-flyspell) ;turn on for latex-mode
-(add-hook 'text-mode-hook 'turn-on-flyspell) ; turn on for text-mode
-(add-hook 'web-mode-hook 'turn-on-flyspell) ; turn on for web-mode
-(global-set-key (kbd "<f8>") 'ispell-word) ; f8 to check current word
-(global-set-key (kbd "C-S-<f8>") 'flyspell-mode) ; Ctrl-Shift-f8 to toggle
-(global-set-key (kbd "C-M-<f8>") 'flyspell-buffer)
-(global-set-key (kbd "C-<f8>") 'flyspell-check-previous-highlighted-word)
-(defun flyspell-check-next-highlighted-word ()
-  "Custom function to spell check next highlighted word"
-  (interactive)
-  (flyspell-goto-next-error)
-  (ispell-word)
-  )
-(global-set-key (kbd "M-<f8>") 'flyspell-check-next-highlighted-word)
+; Turn flyspell on for our various modes
+(require 'flyspell)
+(add-hook 'LaTeX-mode-hook 'flyspell-prog-mode)
+(add-hook 'text-mode-hook 'flyspell-mode)
+(add-hook 'org-mode-hook 'flyspell-mode)
+(add-hook 'markdown-mode-hook 'flyspell-mode)
+; Keybindings
+(define-key flyspell-mode-map (kbd "C-c C-;") 'helm-flyspell-correct)
+; Bug fix, to allow saving a word to custom dictionary without having to then start all over
+(defun flyspell-buffer-after-pdict-save (&rest _)
+  (flyspell-buffer))
+(advice-add 'ispell-pdict-save :after #'flyspell-buffer-after-pdict-save)
+; Change the colour of highlighted incorrect words
+(custom-set-faces
+ '(flyspell-incorrect ((((class color)) (:foreground "white" :background "red4" :underline t :weight bold))))
+ '(flyspell-duplicate ((((class color)) (:foreground "white" :background "orchid4" :underline t :weight bold))))
+ )
+
+;; {{ flyspell setup for web-mode
+(defun web-mode-flyspell-verify ()
+  (let* ((f (get-text-property (- (point) 1) 'face))
+         rlt)
+    (cond
+     ;; Check the words with these font faces, possibly.
+     ;; this *blacklist* will be tweaked in next condition
+     ((not (memq f '(web-mode-html-attr-value-face
+                     web-mode-html-tag-face
+                     web-mode-html-attr-name-face
+                     web-mode-constant-face
+                     web-mode-doctype-face
+                     web-mode-keyword-face
+                     web-mode-comment-face ;; focus on get html label right
+                     web-mode-function-name-face
+                     web-mode-variable-name-face
+                     web-mode-css-property-name-face
+                     web-mode-css-selector-face
+                     web-mode-css-color-face
+                     web-mode-type-face
+                     web-mode-block-control-face)))
+      (setq rlt t))
+     ;; check attribute value under certain conditions
+     ((memq f '(web-mode-html-attr-value-face))
+      (save-excursion
+        (search-backward-regexp "=['\"]" (line-beginning-position) t)
+        (backward-char)
+        (setq rlt (string-match "^\\(value\\|class\\|ng[A-Za-z0-9-]*\\)$"
+                                (thing-at-point 'symbol)))))
+     ;; finalize the blacklist
+     (t
+      (setq rlt nil)))
+    rlt))
+(put 'web-mode 'flyspell-mode-predicate 'web-mode-flyspell-verify)
+;; }}
+(defvar flyspell-check-doublon t
+  "Check doublon (double word) when calling `flyspell-highlight-incorrect-region'.")
+ (make-variable-buffer-local 'flyspell-check-doublon)
+
+(defadvice flyspell-highlight-incorrect-region (around flyspell-highlight-incorrect-region-hack activate)
+  (if (or flyspell-check-doublon (not (eq 'doublon (ad-get-arg 2))))
+      ad-do-it))
+
+(defun web-mode-hook-setup ()
+  (flyspell-mode 1)
+  (setq flyspell-check-doublon nil))
+
+(add-hook 'web-mode-hook 'web-mode-hook-setup)
 
 (add-to-list 'load-path "~/.emacs.d/elpa/yasnippet-0.8.0")
 (require 'yasnippet)

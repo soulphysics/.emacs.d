@@ -8,7 +8,7 @@
  '(initial-frame-alist (quote ((fullscreen . maximized))))
  '(package-selected-packages
    (quote
-    (multiple-cursors yasnippet web-mode sublime-themes pdf-tools parsebib pandoc helm dash csv-mode color-theme auctex-latexmk)))
+    (flyspell-lazy helm-flyspell multiple-cursors yasnippet web-mode sublime-themes pdf-tools parsebib pandoc helm dash csv-mode color-theme auctex-latexmk)))
  '(send-mail-function (quote smtpmail-send-it))
  '(smtpmail-smtp-server "smtp.gmail.com")
  '(smtpmail-smtp-service 25))
