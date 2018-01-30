@@ -1,6 +1,0 @@
-# name: bracket \[ inline-equation \]
-# key: eq*
-# --
-\[
-   $0
-\]

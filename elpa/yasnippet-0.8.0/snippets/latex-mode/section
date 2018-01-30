@@ -1,6 +1,0 @@
-# name: section
-# key: section
-# --
-\section{${1:name}}
-
-$0

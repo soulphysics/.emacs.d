@@ -1,6 +1,0 @@
-# -*- mode: snippet -*-
-# name: emphasis
-# key: em
-# type: snippet
-# --
-<em>$0</em>

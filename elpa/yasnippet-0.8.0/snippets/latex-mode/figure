@@ -1,7 +1,0 @@
-# name: figure
-# key: figu
-# --
-\begin{figure}[tbh]\begin{center}
-\includegraphics[width=0.5\textwidth]{./$0.pdf}
-\caption{$1}\label{fig:$2}
-\end{center}\end{figure}

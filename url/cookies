@@ -1,15 +1,0 @@
-;; Emacs-W3 HTTP cookies file
-;; Automatically generated file!!! DO NOT EDIT!!!
-
-(setq url-cookie-storage
- '((".reddit.com"
-  [url-cookie "__cfduid" "dce2adc36f0498f1e99a8a4b88590a7901431241458" "09 May 16 07:04:18 [GMT]" "/" ".reddit.com" nil]
-  [url-cookie "HttpOnly" nil "09 May 16 07:04:18 [GMT]" "/" ".reddit.com" nil]))
-)
-(setq url-cookie-secure-storage
- 'nil)
-
-;; Local Variables:
-;; version-control: never
-;; no-byte-compile: t
-;; End:

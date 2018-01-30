@@ -1,8 +1,0 @@
-# name: align
-# key: align
-# --
-\begin{align}\label{eq:$0}
-\begin{split}
-   $1 & $2
-\end{split}
-\end{align}

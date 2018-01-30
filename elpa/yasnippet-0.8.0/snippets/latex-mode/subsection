@@ -1,6 +1,0 @@
-# name: subsection
-# key: subs
-# --
-\subsection{${1:name}}
-
-$0
