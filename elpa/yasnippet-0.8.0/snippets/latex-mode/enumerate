@@ -1,0 +1,6 @@
+# name: enumerate
+# key: enum
+# --
+\begin{enumerate}
+	\item $0
+\end{enumerate}

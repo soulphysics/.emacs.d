@@ -1,0 +1,28 @@
+# name: article
+# key: article
+# group: templates
+# --
+\documentclass[a4paper]{amsart}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage[breaklinks]{hyperref}
+\usepackage{natbib}
+\usepackage{thmtools}
+\setcitestyle{aysep={}}
+\input{/bwrtex/BryanCommands}
+\makeatletter
+\let\uppercasenonmath\@gobble
+\let\MakeUppercase\relax
+
+\title{$0}
+\author[Bryan W. Roberts]{Bryan W. Roberts \\ \today}
+\begin{document}
+% \begin{abstract}
+% \end{abstract}
+\maketitle
+
+$1
+
+%\bibliographystyle{dcu}
+%\bibliography{/bwrtex/MasterBibliography} 
+\end{document}

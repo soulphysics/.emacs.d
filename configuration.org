@@ -1,4 +1,4 @@
-#+TITLE: Emacs Customisation's
+#+TITLE: Emacs Configuration
 
 * Package Installation
 ** Load paths for external packages.
@@ -24,108 +24,29 @@
         calendar-location-name "London, UK")
 #+END_SRC
 
-* Org Mode Configuration
-** Loading Org Mode
-#+BEGIN_SRC emacs-lisp
-;; -*- mode: elisp -*-
-(require 'org)
-(setq org-log-done t)
-(add-to-list 'auto-mode-alist '("\\.org$" . org-mode)) ;; Make Org mode work with files ending in .org
-#+END_SRC
-
-** Display Preferences
-
-Fancy bullets using the [[https://github.com/sabof/org-bullets][Org-Bullets]] package, and a downward-pointing arrow instead of ellipses for folded text.
-
-#+BEGIN_SRC emacs-lisp
-(require 'org-bullets)
-(add-hook 'org-mode-hook
-   (lambda ()
-      (org-bullets-mode 1)))
-
-(setq org-hide-leading-stars t)
-#+END_SRC
-
-Replace the elipses representing folding text with a triangle
-
-#+BEGIN_SRC emacs-lisp
-(setq org-ellipsis " ∇")
-#+END_SRC
-
-#+BEGIN_SRC emacs-lisp
-  (setq org-src-fontify-natively t)
-#+END_SRC
-
-Make TAB act as if it were issued in a buffer of the language's major mode.
-
-#+BEGIN_SRC emacs-lisp
-  (setq org-src-tab-acts-natively t)
-#+END_SRC
-
-When editing a code snippet, use the current window rather than popping open a
-new one (which shows the same information).
-
-#+BEGIN_SRC emacs-lisp
-  (setq org-src-window-setup 'current-window)
-#+END_SRC
-
-Quickly insert a block of elisp by typing <el and then TAB. (This is the general technique for creating expandable snippets in org mode.)
-
-#+BEGIN_SRC emacs-lisp
-  (add-to-list 'org-structure-template-alist
-               '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
-#+END_SRC
-
-** Exporting
-
-*** General
-
-Allow export to markdown and beamer (for presentations).
-
-#+BEGIN_SRC emacs-lisp
-  (require 'ox-md)
-  (require 'ox-beamer)
-#+END_SRC
-
-Allow =babel= to evaluate Emacs lisp, Ruby, dot, or Gnuplot code.
-
-#+BEGIN_SRC emacs-lisp
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((emacs-lisp . t)
-     (ruby . t)
-     (dot . t)
-     (gnuplot . t)))
-#+END_SRC
-
-Don't ask before evaluating code blocks.
-
-#+BEGIN_SRC emacs-lisp
-  (setq org-confirm-babel-evaluate nil)
-#+END_SRC
-
-Translate regular ol' straight quotes to typographically-correct curly quotes
-when exporting.
-
-#+BEGIN_SRC emacs-lisp
-  (setq org-export-with-smart-quotes t)
-#+END_SRC
-
-*** Exporting to HTML
-
-Don't include a footer with my contact and publishing information at the bottom of every exported HTML document.
-
-#+BEGIN_SRC emacs-lisp
-  (setq org-html-postamble nil)
-#+END_SRC
-
-* Misc. Pleasantries
+* Emacs Display Preferences
 ** Basic appearance
 
-Line wrapping witha  hanging indent
+Line wrapping with a hanging indent
 
 #+BEGIN_SRC emacs-lisp
 (global-visual-line-mode t)
+#+END_SRC
+
+Loading the Melpa-installed theme 'Montekai'
+
+#+BEGIN_SRC emacs-lisp
+(require 'color-theme)
+(color-theme-initialize)
+(load-file "~/.emacs.d/lisp/themes/montekai.el")
+(montekai) ;theme
+#+END_SRC
+
+Open files in a current emacs buffer instead of in a new emacs window
+
+#+BEGIN_SRC emacs-lisp
+(setq dnd-open-file-other-window nil)
+(setq ns-pop-up-frames nil)
 #+END_SRC
 
 Big pile of customisations
@@ -136,50 +57,18 @@ Big pile of customisations
 (setq linum-format "%d  ") ; linenumber format
 (setq-default cursor-type 'bar) ; make cursor a vertical bar
 (blink-cursor-mode 1) ; blink the cursor
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(initial-frame-alist (quote ((fullscreen . maximized))))
- '(package-selected-packages
-   (quote
-    (yasnippet web-mode sublime-themes pdf-tools parsebib pandoc multiple-cursors helm dash csv-mode color-theme auctex-latexmk)))
- '(send-mail-function (quote smtpmail-send-it))
- '(smtpmail-smtp-server "smtp.gmail.com")
- '(smtpmail-smtp-service 25))
- ; full screen
 (require 'paren) ; highlight open/closed parentheses
 (show-paren-mode 1) ; turn parentheses mode on, always
 (setq show-paren-delay 0) ; show the paren match immediately
-(setq Tex-auto-global nil) ; for faster load time
-(setq Tex-macro-global nil) ; for faster load time
-;; custom theme (use melpa to install color-theme package)
-(require 'color-theme) ;theme
-(color-theme-initialize) ;theme
-(load-file "~/.emacs.d/lisp/themes/montekai.el") ;theme
-(montekai) ;theme
 ;; scroll up/down a line with up and down arrows ;;
 (global-set-key [up] (lambda () (interactive) (scroll-down 1)))
 (global-set-key [down] (lambda () (interactive) (scroll-up 1)))
-;; open recent files with C-x C-r
 (require 'recentf) ;; Obtain a list of recent files wiht C-x C-r
 (recentf-mode 1)
 (setq recentf-max-menu-items 15)
 (global-set-key "\C-x\ \C-r" 'recentf-open-files)
 (require 'multiple-cursors) ;; Multiple cursors package!
 (global-set-key (kbd "\C-c m") 'mc/edit-lines) ;; multiple cursors cmd
-
-(require 'centered-window-mode) ;; Centred window mode package for centering text
-
-;; store all backup and autosave files in the tmp dir
-(setq backup-directory-alist
-      `((".*" . ,temporary-file-directory)))
-(setq auto-save-file-name-transforms
-      `((".*" ,temporary-file-directory t)))
-
-;; Make symbols prettier
-(global-prettify-symbols-mode t)
 #+END_SRC
 
 ** Region-Specific
@@ -215,7 +104,22 @@ A key that command that lets you insert a "pound" £ in emacs while on an Americ
 (put 'downcase-region 'disabled nil)
 #+END_SRC
 
-** Easier italics, bold
+** Easier italics, bold, underline
+
+I find it easier to use Apple's Command-i, Command-b, Command-u to set italics, bold, underline. In Org:
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-mode-hook
+   '(lambda ()
+        (define-key org-mode-map (kbd "s-i") (kbd "\C-c \C-x \C-f /"))
+	(define-key org-mode-map (kbd "s-b") (kbd "\C-c \C-x \C-f *"))
+	(define-key org-mode-map (kbd "s-u") (kbd "\C-c \C-x \C-f _"))
+    )
+)
+#+END_SRC
+
+In LaTeX:
+
 #+BEGIN_SRC emacs-lisp
 (add-hook 'LaTeX-mode-hook
    '(lambda ()
@@ -223,6 +127,11 @@ A key that command that lets you insert a "pound" £ in emacs while on an Americ
 	(define-key LaTeX-mode-map (kbd "s-b") (kbd "\C-c \C-f \C-b"))
     )
 )
+#+END_SRC
+
+In Markdown:
+
+#+BEGIN_SRC emacs-lisp
 (add-hook 'markdown-mode-hook
    '(lambda ()
         (define-key markdown-mode-map (kbd "s-i") (kbd "\C-c \C-s e"))
@@ -231,7 +140,187 @@ A key that command that lets you insert a "pound" £ in emacs while on an Americ
 )
 #+END_SRC
 
-* HELM
+In web-mode I'm not sure how to do this, but I'd sure like to!
+
+* Org Mode Configuration
+** Loading Org Mode Essentials
+
+Load org and make it the default mode for .org files:
+
+#+BEGIN_SRC emacs-lisp
+;; -*- mode: elisp -*-
+(require 'org)
+(setq org-log-done t)
+(add-to-list 'auto-mode-alist '("\\.org$" . org-mode)) ;; Make Org mode work with files ending in .org
+#+END_SRC
+
+** MobileOrg
+
+MobileOrg lets you view and edit your org files on iOS or Android using the MobilOrg app.
+
+First, set the location of my Org files. For use with the MobileOrg app, we also set the location of the file where new notes will be stored (flagged.org) and the mobile directory (MobileOrg):
+
+#+BEGIN_SRC emacs-lisp
+(setq org-directory "~/Dropbox/Lists") ; Org directory
+(setq org-mobile-inbox-for-pull "~/Dropbox/Lists/flagged.org") ; New notes
+(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg") ; MobileOrg directory
+#+END_SRC
+
+Your org files have to be transferred over to the folder where the App will view them. This can be done manually by running =org-mobile-push=. But, it's better to automate this. I use Melpa to install the =org-mobile-sync= package, which does this automatically.
+
+** Display Preferences
+
+Fancy bullets using the [[https://github.com/sabof/org-bullets][Org-Bullets]] package, and a downward-pointing arrow instead of ellipses for folded text.
+
+#+BEGIN_SRC emacs-lisp
+(require 'org-bullets)
+(add-hook 'org-mode-hook
+   (lambda ()
+      (org-bullets-mode 1)))
+
+(setq org-hide-leading-stars t)
+#+END_SRC
+
+Replace the elipses representing folding text with a down-arrow
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-ellipsis " ▼")
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-src-fontify-natively t)
+#+END_SRC
+
+Make TAB act as if it were issued in a buffer of the language's major mode.
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-src-tab-acts-natively t)
+#+END_SRC
+
+When editing a code snippet, use the current window rather than popping open a
+new one (which shows the same information).
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-src-window-setup 'current-window)
+#+END_SRC
+
+Quickly insert a block of elisp by typing <el and then TAB. (This is the general technique for creating expandable snippets in org mode.)
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'org-structure-template-alist
+               '("el" "#+BEGIN_SRC emacs-lisp\n?\n#+END_SRC"))
+#+END_SRC
+
+Standard LaTeX highlighting for mathematics:
+
+#+BEGIN_SRC emacs-lisp
+(eval-after-load 'org
+  '(setf org-highlight-latex-and-related '(latex)))
+#+END_SRC
+
+Make elisp blocks stand out more
+
+#+BEGIN_SRC emacs-lisp
+
+#+END_SRC
+
+** Exporting
+*** General
+
+Turn on exporting to Markdown, although we don't use this so much now that we have achieved org-mode Zen.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'ox-md)
+#+END_SRC
+
+Allow =babel= to evaluate Emacs lisp, Ruby, dot, or Gnuplot code.
+
+#+BEGIN_SRC emacs-lisp
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '((emacs-lisp . t)
+     (ruby . t)
+     (dot . t)
+     (gnuplot . t)))
+#+END_SRC
+
+Don't ask before evaluating code blocks.
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-confirm-babel-evaluate nil)
+#+END_SRC
+
+Translate regular ol' straight quotes to typographically-correct curly quotes when exporting.
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-export-with-smart-quotes t)
+#+END_SRC
+
+*** Exporting to HTML
+
+Remove the crappy default CSS and replace it with my custom stylesheets.
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-publish-project-alist
+        '(("org"
+           :style-include-default nil
+           ))
+        )
+  (setq org-html-head-include-default-style nil)
+  (setq org-export-html-style-include-scripts nil)
+  (setq org-html-head
+        (concat
+         "<link rel='stylesheet' type='text/css' href='http://personal.lse.ac.uk/robert49/css/org.css'/>\n"
+         "<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css' />"
+         )
+        )
+#+END_SRC
+
+Add a Bootstrap "container" classes to the main content div. We use a filter to go through the html output and add a string in the appropriate place. We add a nice Bootstrap 'table' classes to any tables while we're at it.
+
+#+BEGIN_SRC emacs-lisp
+  (defun my-final-filter(output backend info)
+    ; Add 'container' classes
+    (setq output (replace-regexp-in-string  "div id=\"content\"" "div id=\"content\" class=\"container\"" output ))
+    (setq output (replace-regexp-in-string  "class=\"status\"" "class=\"status container\"" output ))
+    (setq output (replace-regexp-in-string  "<table" "<table class=\"table table-bordered table-striped\"" output ))
+    output
+    )
+  (setq org-export-filter-final-output-functions  '(my-final-filter) )
+#+END_SRC
+*** Exporting to LaTeX
+We set the default class to be amsart, the standard document type set by the American Mathematical Association (AMS), and choose some standard agreeable packages. Everything here will work for everyone, with the exception of my custom commands input file =BryanCommands=, which can be deleted.
+
+#+BEGIN_SRC emacs-lisp
+      (add-to-list 'org-latex-classes
+                   '("amsart"
+                     "\\documentclass[a4paper]{amsart}
+\\usepackage{amsmath,amssymb,amsthm}
+\\usepackage{graphicx} \\usepackage[left=1.25in,top=1.4in,right=1.25in,bottom=1.4in,head=0.5in,foot=0.5in]{geometry}
+\\usepackage[hidelinks]{hyperref}
+\\setlength{\\parindent}{0.5in}
+\\usepackage[nodisplayskipstretch]{setspace}
+\\setstretch{1.5}
+\\input{/bwrtex/BryanCommands}
+\\makeatletter
+\\let\\uppercasenonmath\\@gobble
+\\let\\MakeUppercase\\relax
+                     "
+                     ("\\section{%s}" . "\\section*{%s}")
+                     ("\\subsection{%s}" . "\\subsection*{%s}")
+                     ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                     ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                     ("\\subparagraph{%s}" . "\\subparagraph*{%s}")
+                     )
+                   )
+      (setq org-latex-default-class "amsart")
+#+END_SRC
+*** Exporting to Beamer
+Turn on exporting to beamer, and set my standard packages and custom packages.
+#+BEGIN_SRC emacs-lisp
+  (require 'ox-beamer)
+#+END_SRC
+* Helm Configuration
 #+BEGIN_SRC emacs-lisp
 (require 'helm-config)
 (require 'helm)
@@ -255,22 +344,44 @@ A key that command that lets you insert a "pound" £ in emacs while on an Americ
 #+END_SRC
 
 * Latex 
-** AucTeX
+** AucTeX and RefTeX
+
+Turn off automatic global style hooks for faster load-time:
+
+#+BEGIN_SRC emacs-lisp
+(setq Tex-auto-global nil)
+(setq Tex-macro-global nil)
+#+END_SRC
+
+Misc LaTeX customisations:
+
 #+BEGIN_SRC emacs-lisp
 (setenv "PATH" "/usr/local/bin:/Library/TeX/texbin/:$PATH" t)
 (setq TeX-auto-save t) ; auto save
 (setq TeX-parse-self t) ; auto parse on load
 (setq preview-auto-cache-preamble t) ; stop preview pestering
-; (setq-default TeX-master nil)
 (add-hook 'LaTeX-mode-hook 'visual-line-mode) ; Word wrapping
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
-(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+#+END_SRC
+
+Use reftex for easy insertion of references, and add some customisations:
+
+#+BEGIN_SRC emacs-lisp
 (setq reftex-plug-into-AUCTeX t)
-(setq TeX-PDF-mode t) ; Compile as a PDF
+(add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-ref-macro-prompt nil) ; Disable annoying reference prompt screen
 (setq reftex-default-bibliography '("/bwrtex/MasterBibliography.bib")) ; So Reftex finds my bib file
 #+END_SRC
 ** Compiling
+
+Compile a PDF by default:
+
+#+BEGIN_SRC emacs-lisp
+(setq TeX-PDF-mode t) ; Compile as a PDF
+#+END_SRC
+
+Run latexmk to automatically keep loading LaTeX and Bibtex until the file is rendered correctly.
+
 #+BEGIN_SRC emacs-lisp
 ;; latexmk - repeat compiling
 (add-hook 'LaTeX-mode-hook (lambda ()
@@ -279,14 +390,20 @@ A key that command that lets you insert a "pound" £ in emacs while on an Americ
       :help "Run latexmk on file")
     TeX-command-list)))
 (add-hook 'TeX-mode-hook '(lambda () (setq TeX-command-default "latexmk")))
+#+END_SRC
 
-;; XeLaTeX
+Allow compiling with XeLaTeX
+
+#+BEGIN_SRC emacs-lisp
 (add-hook 'LaTeX-mode-hook (lambda()
     (add-to-list 'TeX-command-list '("XeLaTeX" "%`xelatex%(mode)%' %t" TeX-run-TeX nil t))
 ))
 #+END_SRC
 
 ** Skim PDF syncing
+
+Use Skim as the default PDF viewer and allow cross-linking
+
 #+BEGIN_SRC emacs-lisp
 ;option -b highlights the current line in Skim; option -g opens Skim in the background  
 (setq TeX-view-program-selection '((output-pdf "PDF Viewer")))
@@ -296,9 +413,7 @@ A key that command that lets you insert a "pound" £ in emacs while on an Americ
 #+END_SRC
 
 * Flyspell  
-Flyspell is a built-in spell checker for Emacs. It requires having ASpell installed, which you can get using homebrew:
-
-- homebrew install aspell
+Flyspell is a built-in spell checker for Emacs. It requires having ASpell installed, which you can get using homebrew: ~homebrew install aspell~
 
 To use Flyspell in Emacs, first run it in the buffer with =M-x flyspell-buffer=. Then hit =C-,= to scroll through errors. To fix an error, use =C-x $=.
 
@@ -307,7 +422,9 @@ We turn on Flyspell in the appropriate way (using =flyspell-prog-mode= for progr
 #+BEGIN_SRC emacs-lisp
 ; Turn flyspell on for our various modes
 (require 'flyspell)
-(add-hook 'LaTeX-mode-hook 'flyspell-prog-mode)
+;(add-hook 'LaTeX-mode-hook 'flyspell-prog-mode)
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+;(add-hook 'LaTeX-mode-hook #'turn-on-flyspell)
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'flyspell-mode)
 (add-hook 'markdown-mode-hook 'flyspell-mode)
@@ -379,6 +496,9 @@ To get Flyspell to work well in web-mode, we need some code that tells Flyspell 
 #+END_SRC
 
 * Yasnippet
+
+Yasnippet is a fantastic little Snippet creator and editor. After installing Yasnippet, load it and set =M-s M-s= to bring up a snippet dropdown menu.
+
 #+BEGIN_SRC emacs-lisp
 (add-to-list 'load-path "~/.emacs.d/elpa/yasnippet-0.8.0")
 (require 'yasnippet)
@@ -388,22 +508,24 @@ To get Flyspell to work well in web-mode, we need some code that tells Flyspell 
 #+END_SRC
 
 * Markdown
+
+I don't use Markdown so much anymore after having discovered Org, but I keep it around because I have a lot of old files written in Markdown.
+
+To compile with Markdown, you have to first install it. I do this using Homebrew by running ~brew install markdown~. We will automatically load Markdown and use it for .txt, .markdown, and .md files:
+
 #+BEGIN_SRC emacs-lisp
-;; Requires installing markdown. Just run in the shell:
-;; brew install markdown
 (autoload 'markdown-mode "markdown-mode"
    "Major mode for editing Markdown files" t)
 (add-to-list 'auto-mode-alist '("\\.txt\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
 (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
 (add-hook 'markdown-mode-hook 'visual-line-mode) ; line wrapping
+#+END_SRC
 
-;; Markdown rendering - better font-sizes
+Then we customise how the Markdown is displayed to make it look a little nicer.
+
+#+BEGIN_SRC emacs-lisp
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(fringe ((t (:background "#272821"))))
  '(markdown-header-delimiter-face ((t (:inherit font-lock-function-name-face :underline t :weight bold))) t)
  '(markdown-header-face-1 ((t (:inherit markdown-header-face :height 1.5))) t)
@@ -416,8 +538,10 @@ To get Flyspell to work well in web-mode, we need some code that tells Flyspell 
 #+END_SRC
 
 * HTML editing
+
+Emacs by default uses an html-mode that is pretty weak. It's way better to use web-mode. I require this, and use it to open standard html files:
+
 #+BEGIN_SRC emacs-lisp
-;; Better Webmode
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
@@ -434,21 +558,28 @@ To get Flyspell to work well in web-mode, we need some code that tells Flyspell 
              "~/.emacs.d/xml-schemas/schemas.xml"
              t)
 (define-key nxml-mode-map "\M- " 'completion-at-point)
-
-;; WEB PREVIEW (Does this work?)
-;; (require 'html-preview)			
-;; Turn on the minor mode in your source buffer
-;; M-x html-preview-minor-mode
-
-;; By default previews are generated only on save.
-;; If you wish to enable previews for every change, set
-;; ~html-preview-after-change-idle-delay~ to some value in seconds.
-;; (setq html-preview-after-change-idle-delay 0.4)
 #+END_SRC
 
-* Bug-fixes
+* Emacs Cross-Machine Syncing
+
+I keep my =.emacs.d= file with all my packages and configurations in a visible Dropbox folder that I can sync with all my machines, and then use a symbolic link to it in my home directory. The symbolic link is created by going to the terminal and entering,
+
+~ln -s ~/Dropbox/emacs.d ~/.emacs.d~
+
+I use the same trick to sync the custom additions to my aspell dictionary across machines.
+
+~ln -s ~/Dropbox/emacs-aspell-dict ~/.aspell.en.pws~
+
+To not add all the emacs auto-saving and backups to Dropbox's syncing tasks, I also use the following to place these in a =tmp= folder in my root directory. (Actually I have to check that this works, and don't feel like tinkering with it right now.)
+
 #+BEGIN_SRC emacs-lisp
-;; Pop-up window crashing emacs
+;    (add-to-list 'auto-save-file-name-transforms '("\\`.*/Dropbox/.*" "/tmp/" t))
+;    (add-to-list 'backup-directory-alist '("\\`.*/Dropbox/.*" . "/tmp/"))
+#+END_SRC
+* Bug-fixes
+For some reason if I closed the emacs window using the mouse, it would produce a pop-up dialogue that would crash emacs. The code below prevents this from happening. (That was emacs 24 though, so it may not be necessary anymore.)
+
+#+BEGIN_SRC emacs-lisp
 (defadvice yes-or-no-p (around prevent-dialog activate)
   "Prevent yes-or-no-p from activating a dialog"
   (let ((use-dialog-box nil))

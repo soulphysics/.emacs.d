@@ -1,0 +1,13 @@
+;;; sublime-themes-autoloads.el --- automatically extracted autoloads
+;;
+;;; Code:
+
+
+(provide 'sublime-themes-autoloads)
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; no-update-autoloads: t
+;; coding: utf-8
+;; End:
+;;; sublime-themes-autoloads.el ends here
